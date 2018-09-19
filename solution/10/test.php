@@ -1,17 +1,16 @@
-<?php
+ <?php
 
-    // Decide on the domain and page to test
-    $domain = "https://unco-bacs.org";
-    $page = "bacs_350/solution/13/index.php";
-    $url = "$domain/$page";
+    // Test requested domain and page
+    $url = "http://$domain/$test_page";
 
+  
     // Create a link for the page
-    echo "<h2>Test Page for $page</h2>
+    echo "<h2>Test Page for $test_page</h2>
         <p>Start simple but start now.</p>
         <p>Make sure that the page exists and has valid HTML.";
 
     echo '<h3>Page Exists</h3>
-        <p><a href="' . $url . '">' . $page . '</a></p>';
+        <p><a href="' . $url . '">' . $test_page . '</a></p>';
 
     // Run your page through the validator
     $validator = 'http://validator.w3.org';
