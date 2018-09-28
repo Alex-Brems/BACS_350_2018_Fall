@@ -4,12 +4,9 @@
 
     $host = 'localhost';
     $port = '3306';
-    $dbname = 'uncobacs_subscribers';
+    $dbname = 'uncobacs_books';
     $username = 'uncobacs_350';
     $password = 'BACS_350';
-    $blue_connect = "mysql:host=$host:$port;dbname=$dbname";
+    $db_connect = "mysql:host=$host:$port;dbname=$dbname";
     
-    // Select the appropriate connection
-    $db_connect = $blue_connect;
-
 ?>

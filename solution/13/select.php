@@ -5,18 +5,18 @@
 
 
     // Query for all subscribers
-    $query = "SELECT * FROM subscribers";
+    $query = "SELECT * FROM books";
 
     $statement = $db->prepare($query);
     $statement->execute();
 
-    echo '<h2>Subscribers in List</h2>';
+    echo '<h2>Books in List</h2>';
 
     // Loop over all of the subscribers to make a bullet list
     $subscribers = $statement->fetchAll();
     echo '<ul>';
     foreach ($subscribers as $s) {
-        echo '<li>' . $s['id'] . ', ' . $s['name'] . ', ' . $s['email'] . '</li>';
+        echo '<li>' . $s['id'] . ', ' . $s['title'] . ', ' . $s['author'] . '</li>';
     }
     echo '</ul>';
 

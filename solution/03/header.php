@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
 
-        <meta charset="UTF-8">
-        <title>
-            <?php
-                echo $page_title;
-            ?>
+<head>
 
-        </title>
-        <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>
+        <?php echo $page_title;  ?>
 
-    </head>
-    <body>
+    </title>
+    <link rel="stylesheet" href="style.css">
 
-        <header>
-            <h1>
-                <?php
-                    echo $page_title;
-                ?>
-            </h1>
-        </header>
-        <main>
-            
+</head>
+
+<body>
+
+    <header>
+        <h1>
+            <?php  echo $page_title; ?>
+        </h1>
+    </header>
+    <main>
