@@ -24,6 +24,7 @@
                             <img src="/Bear.png" alt="Bear Logo"/>
                             ' . $page_title . '
                         </h1>
+                        <p>TEST</p>
                     </header>
                     <main>
         ';
