@@ -1,10 +1,13 @@
 <?php
 
+    //require the functions
+    require_once 'functions.php';
+
     // Setup a page title variable
     $page_title = "Project #16 Index";
 
     // Include the page start
-    include 'header.php';
+    page_header($page_title);
 
     // Include the main page content
     echo '<body><h1>BACS 350 - PROJECT #16: Subscribers Application </h1></body>';
@@ -19,6 +22,6 @@
     require_once 'insertuser.php';
 
     // Include the page end
-    include 'footer.php';
+    page_footer();
 
  ?>

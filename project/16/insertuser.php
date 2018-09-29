@@ -1,9 +1,3 @@
-<?php
-
-    include "header.php";
-
-?>
-
 <h2>Add A User to the Subscribers</h2>
 <form action="added.php" method="post">
 <label>What is your name?</label>

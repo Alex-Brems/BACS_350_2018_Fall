@@ -1,13 +1,20 @@
 <?php
+
+    //require the functions
+    require_once 'functions.php';
         
-    include "header.php";
+    // Setup a page title variable
+    $page_title = "Project #16 Index";
+
+    // Include the page start
+    page_header($page_title);
 
     // Connect to the database
     require_once 'db.php';
 
 ?>
 
-<h2>Log Added!</h2>
+<h2>User Added!</h2>
 <p>
     Name: <?php echo $_POST["name"]; ?>
     <br>
@@ -39,3 +46,10 @@
 ?>
 
 <a href="index.php">Back to the Subscribers Index</a>
+
+<?php
+
+    // Include the page end
+    page_footer();
+
+?>
