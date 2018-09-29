@@ -16,7 +16,7 @@
     require_once 'select.php';
 
     //require the insert
-    //require_once 'insertuser.php'
+    require_once 'insertuser.php';
 
     // Include the page end
     include 'footer.php';
