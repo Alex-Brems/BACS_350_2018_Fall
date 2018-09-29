@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>$page_title</title>
+        <title><?php echo $page_title ?></title>
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
