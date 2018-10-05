@@ -1,15 +1,15 @@
 <?php 
-    $page_title = 'BACS 350 - Project #2 - Includes';
+
+    // Start Page
+    $site_title = 'BACS 350 - Demo Server';
+    $page_title = 'Includes Design Pattern';
     include "header.php"; 
+
+
+    // Your PHP content goes here
+    require 'content.html';
+
+
+    // End Page
+    include "footer.php"; 
 ?>
-
-<!--  Your code goes here -->
-
-<img src="Bear3.png">
-
-<p>This is a simple HTML page that demonstrates using an Include to capture boiler-plate code.</p>
-<p>This reduces duplication in code.</p>
-<p>Learn about the <a href="pattern.php">Include Design Pattern</a></p>
-
-
-<?php include "footer.php"; ?>

@@ -1,72 +1,50 @@
 body {
     font-size: 18px;
     color: #0E3D65;
-}
-
-h1, h2, h3 {
-    margin: 10px 0px;
-    padding: 10px 0px;
+    margin: 20px;
+    padding: 10px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-h1 {
-    color: #F6B018;
-    font-size: 300%;
-}
-
-h2 {
-    color: #0E3D65;
-    background-color: #F6B018;
-    border: 2px solid #0E3D65;
-    text-align: center;
-    font-size: 200%;
-}
-
+h1,
+h2,
 h3 {
-    font-size: 150%;
+    color: #0E3D65;
+    margin: 10px;
+    padding: 10px;
 }
 
 header {
-    border: 2px solid  #F6B018;
-    background-color: #0E3D65;
+    border: 4px solid #0E3D65;
+    background-color: #F6B018;
+    border-radius: 20px;
+    color: #0E3D65;
+}
+
+
+h3 {
     color: #F6B018;
 }
 
-header a {
-    color: white;
-}
-
-header a:hover {
-    color: yellow;
-}
-
-header h1 {
-    border: none;
-    margin-left: 50px;
-    font-size: 200%;
-}
-
-header h2 {
-    color: white;
-    background-color: #0E3D65;
-    border: none;
-    margin-left: 50px;
-    font-size: 120%;
-    text-align: left;
-    width: 100%;
-}
-
-header .logo {
+header img {
     box-shadow: none;
-    border: white solid 4px;
     border-radius: 20px;
-    /*margin: 0px 20px;*/
-    padding: 5px;
-    width: 240px;
-    height: 280px;
+    margin: 20px;
+    width: 100px;
+    float: right;
+}
+
+li {
+    margin: 20px;
+}
+
+p {
+    margin: 20px;
 }
 
 .card {
     border: 1px solid black;
+    border-radius: 20px;
     padding: 20px;
+    margin: 50px;
 }

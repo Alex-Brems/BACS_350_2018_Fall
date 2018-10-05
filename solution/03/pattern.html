@@ -1,38 +1,54 @@
-<h1>Page Design Pattern</h1>
-<p><a href="..">Solutions</a></p>
-<p><a href=".">Page Pattern</a></p>
-
 <p>
-    The Include Design Pattern allows you to write code once and use it many times.
+    The Page Design Pattern allows you to write code once and use it many times.
 </p>
-
 
 <h2>Problem</h2>
 
 <p>
-    Many constructs are repeated on different pages of a website.  We need an easy way to use code that we have written
-    for several different pages.  HTML provides no mechanism that will allow us to reuse HTML code.
+    Many constructs are repeated on different pages of a website. We need an easy way to use code that we have written
+    for several different pages. HTML provides no mechanism that will allow us to reuse HTML code.
 </p>
 <p>
     One place where this would be handy is in defining a standard HTML structure for every web page in our
-    site.   All of the code required to start a page and the code to end a page could be packaged in a way
+    site. All of the code required to start a page and the code to end a page could be packaged in a way
     that we would not have to replicate this code.
 </p>
-<ul>
-    <li></li>
-</ul>
+
+<p>This is a simple HTML page that demonstrates using an Include to capture boiler-plate code.</p>
+<p>This reduces duplication in code.</p>
+<p>In this demo the <b>$page_title</b> is set as a variable that is used by the <b>header.php</b> file.</p>
+<p>This page also includes a stylesheet.</p>
 
 
 <h2>Solution</h2>
 
 <p>
-    
+    Define a standard header and footer that should be on every HTML page. Then build this into two functions
+    that can be invoked to import the header and footer code.
 </p>
-
-
-<h2>Discussion</h2>
+<p>
+    Define a page with the following PHP code.
+</p>
+<pre>
+        // Start Page
+        require_once 'views.php';
+        $page_title = 'Page Title';
+        begin_page($page_title);
+        
+        // Add PHP content here 
+        
+        // End Page
+        end_page();
+</pre>
 
 <p>
-    
+    Other files can be included to build a page.  Example:  <a href="pattern.html">pattern.html</a>.
 </p>
 
+
+<h2>Learn more</h2>
+<ul>
+    <li><a href="..">Other Demos</a></li>
+    <li><a href="https://seamansguide.com/guide/PhpApps/docs/Page.md">Page Design Pattern</a></li>
+    <li><a href="pattern.html">pattern.html</a> - Show Raw Content</li> 
+</ul>

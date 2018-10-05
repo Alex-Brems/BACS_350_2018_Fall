@@ -1,20 +1,20 @@
-<?php 
+<?php
 
-    $page_title = "BACS 350 - Project #3";
+    // Start the page
+    require_once 'views.php';
 
-    include "header.php"; 
+    $site_title = 'BACS 350 - Demo Server';
+    $page_title = 'Page Design Pattern';
+    begin_page($site_title, $page_title);
+
+
+    // Your page content goes here
+
+    // Include other content
+    require 'pattern.html';
+
+
+    // End the page
+    end_page();
 
 ?>
-
-    <!--  Your code goes here -->
-    <a href="../..">Home</a>
-    <h1>BACS 350 - Project #3</h1>
-
-    <img src="Bear3.png">
-
-    <p>This is a simple HTML page that demonstrates using an Include to capture boiler-plate code.</p>
-    <p>This reduces duplication in code.</p>
-    <p>In this demo the <b>$page_title</b> is set as a variable that is used by the <b>header.php</b> file.</p>
-    <p>This page also includes a stylesheet.</p>
-
-<?php include "footer.php"; ?>

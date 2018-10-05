@@ -1,42 +1,55 @@
 <?php
 
-    /*
-        This code shows how to hook up a logging utility.
-
-        usage:
-            $text = "This text message";
-            require 'log.php';
+    // Bring in logs logic
+    require_once 'log_db.php';
+    require_once 'log_crud.php';
+    require_once 'log_views.php';
 
 
-        SQL Database table
+    // My log list
+    class Log {
 
-            // Create table log: date, text
-            CREATE TABLE log (
-              id int(3) NOT NULL AUTO_INCREMENT,
-              date varchar(100)  NOT NULL,
-              text varchar(100) NOT NULL,
-              PRIMARY KEY (id)
-            );
+        // Database connection
+        private $db;
 
-    */
+        
+        // Automatically connect
+        function __construct() {
+            $this->db =  log_connect();
+        }
 
-    // Connect to the database
-    require_once 'db.php';
+        
+        // CRUD
+        
+        function query() {
+            return query_log($this->db);
+        }
+        
+    
+        function clear() {
+            return clear_log($this->db);
+        }
+        
+        
+        function add($text) {
+            return add_log ($this->db, $text);
+        }
+        
+        
+        //Views
+        
+        function show_log() {
+            render_list($this->query());
+        }
+        
+        
+        function add_form() {
+            add_log_form();
+        }
+    }
 
 
-    // Create a string for "now"
-    $date = date('Y-m-d g:i a');
-
-
-    // Add database row
-    $query = "INSERT INTO log (date, text) VALUES (:date, :text);";
-
-    $statement = $db->prepare($query);
-
-    $statement->bindValue(':date', $date);
-    $statement->bindValue(':text', $text);
-
-    $statement->execute();
-    $statement->closeCursor();
+    // Create a list object and connect to the database
+    $log = new Log;
 
 ?>
