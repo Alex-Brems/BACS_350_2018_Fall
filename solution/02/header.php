@@ -15,8 +15,8 @@
 <body>
 
     <header>
-        <h1>
-            <?php  echo $page_title; ?>
-        </h1>
+        <img src="Bear.png">
+        <h1><?php  echo $site_title; ?></h1>
+        <h2><?php  echo $page_title; ?></h2>
     </header>
     <main>
