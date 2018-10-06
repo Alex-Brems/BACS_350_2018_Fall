@@ -1,8 +1,10 @@
 <?php
 
-    // Start the page
-    $page_title = 'BACS 350 - Project #6 - Database Connect';
-    require_once '../../header.php';
+    require_once '../../views.php';
+
+    $site_title = 'BACS 350 - Demo Server';
+    $page_title = 'Database Connect Design Pattern';
+    begin_page($site_title, $page_title);
 
     
     // Form the DB Connection string
@@ -26,7 +28,13 @@
     }
 
 
-    // End the page
-    require_once '../../footer.php';
+    echo '<h2>Learn more</h2>
+            <ul>
+                <li><a href="..">Other Demos</a></li>
+                <li><a href="https://seamansguide.com/guide/PhpApps/docs/Database.md">DB Connection Design Pattern</a></li> 
+            </ul>';
+    
+    
+    end_page();
 
 ?>

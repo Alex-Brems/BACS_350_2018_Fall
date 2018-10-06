@@ -1,16 +1,19 @@
 <?php
+
+    require_once '../../views.php';
+
+    $site_title = 'BACS 350 - Demo Server';
+    $page_title = 'Form Input Design Pattern';
+    begin_page($site_title, $page_title);
+
+
+    // Grab the name
     $name = filter_input(INPUT_POST, 'my_name');
 
-    // Setup a page title variable
-    $page_title = "View to Accept Data";
+    echo '<h1>View to Accept Data</h1> 
+        <h3>Welcome back, ' . $name . '</h3>';
 
-    // Include the page start
-    include '../../header.php';
-?>
 
-    <h2>Welcome back, <?php echo $name; ?></h2>
+    end_page();
 
-<?php
-    // Include the page end
-    include '../../footer.php';
 ?>

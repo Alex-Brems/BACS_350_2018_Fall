@@ -1,22 +1,22 @@
 <?php
 
-    // Include the page start
-    $page_title = "BACS 350 - Project 11 - Page Logging";
-    include 'header.php';
+    require_once 'views.php';
+ 
+    $site_title = 'BACS 350 - Demo Server';
+    $page_title = 'Page Logging';
+    begin_page($site_title, $page_title);
 
 
-    // Log the page loading
-    $page = 'solution/11/index.php';
-    $text = "Loading Page: $page";
-    require('log.php');
+    // Page Content
+    echo '<p><a href="..">Solutions</a></p>';
+
+    
+    // Bring in log logic
+    require_once 'log.php';
+    $log->add('solution/11/index.php');
+    $log->show_log();
 
 
-    // Include the main page content
-    echo '<h1>Page Logging Demo</h1>';
-    require ('log-history');
-
-
-    // Include the page end
-    include 'footer.php';
+    end_page();
 
  ?>
