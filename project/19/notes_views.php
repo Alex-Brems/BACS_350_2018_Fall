@@ -38,7 +38,7 @@
                 <ul>
             ';
         foreach ($list as $s) {
-            echo '<li>' . $s['id'] . ', ' . $s['title'] . ', ' . $s['date'] . ', ' . $s['body'] .</li>';
+            echo '<li>' . $s['id'] . ', ' . $s['title'] . ', ' . $s['date'] . ', ' . $s['body'] .'</li>';
         }
         echo '
                 </ul>

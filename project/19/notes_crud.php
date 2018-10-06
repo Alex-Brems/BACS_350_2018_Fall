@@ -11,7 +11,7 @@
             $statement = $db->prepare($query);
             $statement->bindValue(':title', $title);
             $statement->bindValue(':date', $date);
-            $statement->bindValue(':body', $body)
+            $statement->bindValue(':body', $body);
             $statement->execute();
             $statement->closeCursor();
             return true;

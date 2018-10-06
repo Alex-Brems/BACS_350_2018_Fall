@@ -15,7 +15,7 @@
         
         // Automatically connect
         function __construct() {
-            $this->db =  notes_connect();
+            $this->db =  remote_connect();
         }
 
         
