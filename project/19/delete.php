@@ -7,11 +7,11 @@
 
 
     // Connect to the database
-    require_once 'subscriber.php';
+    require_once 'notes.php';
 
 
     // Delete all records
-    if ($subscribers->clear()) {
+    if ($notes->clear()) {
 //        echo '<p><b>Clear successful</b>&nbsp;<a href="index.php">Subscribers</a></p>';
 //        $this->query();
           header("Location: index.php");
