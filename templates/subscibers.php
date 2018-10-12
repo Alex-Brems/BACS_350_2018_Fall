@@ -1,18 +1,32 @@
 <?php
 
-    // Display subscriber records
-    require 'select.php';
+    // Start the page
+    require_once 'views.php';
+ 
+    $site_title = 'BACS 350 - Demo Server';
+    $page_title = 'Subscriber List';
+    begin_page($site_title, $page_title);
 
 
-    // Insert one new record
-    echo '<a href="insert.php">Insert New Record</a>';
+    // Page Content
+    echo '<p><a href="..">Solutions</a></p>';
+    
+    
+    // Bring in subscribers logic
+    require_once 'subscriber.php';
+    
+
+    // Add record if requested
+    $subscribers->handle_add($name, $email);
 
 
-    // Delete test record
-    echo '<a href="delete.php">Delete Record</a>';
+    // Render a list of subscribers
+    $subscribers->show_subscribers();
 
 
-    // Update test record
-    echo '<a href="update.php">Update Record</a>';
+    // Show the add form
+    $subscribers->add_form();
 
+
+    end_page();
 ?>
