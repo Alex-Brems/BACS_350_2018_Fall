@@ -14,6 +14,10 @@ h3 {
     padding: 10px;
 }
 
+h3 {
+    color: #F6B018;
+}
+
 header {
     border: 4px solid #0E3D65;
     background-color: #F6B018;
@@ -21,10 +25,6 @@ header {
     color: #0E3D65;
 }
 
-
-h3 {
-    color: #F6B018;
-}
 
 header img {
     box-shadow: none;
@@ -42,16 +42,17 @@ p {
     margin: 20px;
 }
 
+pre {
+    margin: 50px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px gray;
+    border: 1px solid black;
+    background-color: #eeeeee;
+}
+
 .card {
     border: 1px solid black;
     border-radius: 20px;
     padding: 20px;
     margin: 50px;
-}
-
-.page {
-    border: 1px solid black;
-    padding: 20px;
-    margin: 50px;
-    background-color: #eeeeee;
 }

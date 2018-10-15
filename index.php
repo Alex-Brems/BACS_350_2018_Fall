@@ -1,6 +1,5 @@
 <?php 
     require_once 'views.php';
-
     $page_title = 'BACS 350 - Demo Server';
     begin_page($page_title, 'Home');
 ?>
@@ -16,6 +15,9 @@
     </li>
     <li>
         <a href="solution">Project Solutions</a>
+    </li>
+    <li>
+        <a href="project">My Projects</a>
     </li>
     <li>
         <a href="templates">Code Templates</a>

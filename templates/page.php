@@ -1,15 +1,20 @@
 <?php
 
-    // Setup a page title variable
-    $page_title = "PAGE TITLE";
+    // Start the page
+    require_once 'views.php';
+ 
+    $site_title = 'BACS 350 - Demo Server';
+    $page_title = 'Page Template';
+    begin_page($site_title, $page_title);
 
-    // Include the page start
-    include 'header.php';
 
+    // Page Content Goes here
+    
     // Include the main page content
-    echo '<h1>MAIN TEXT</h1><p>BODY</p>';
+    echo '<h1>HEADLINE</h1><p>BODY</p>';
+
 
     // Include the page end
-    include 'footer.php';
+    end_page();
 
  ?>

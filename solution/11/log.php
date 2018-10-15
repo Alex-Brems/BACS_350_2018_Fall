@@ -1,7 +1,7 @@
 <?php
 
     // Bring in logs logic
-    require_once 'log_db.php';
+    require_once 'db.php';
     require_once 'log_crud.php';
     require_once 'log_views.php';
 
@@ -12,8 +12,6 @@
         // Database connection
         private $db;
 
-        
-        // Automatically connect
         function __construct() {
             $this->db =  log_connect();
         }
@@ -25,12 +23,10 @@
             return query_log($this->db);
         }
         
-    
         function clear() {
             return clear_log($this->db);
         }
-        
-        
+           
         function add($text) {
             return add_log ($this->db, $text);
         }
@@ -41,7 +37,6 @@
         function show_log() {
             render_list($this->query());
         }
-        
         
         function add_form() {
             add_log_form();
