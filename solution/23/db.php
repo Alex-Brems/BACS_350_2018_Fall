@@ -59,7 +59,7 @@ CREATE TABLE subscribers (
 
 
     // Open the database or die
-    function subscribers_connect() {
+    function connect_database() {
         
         $local = ($_SERVER['SERVER_NAME'] == 'localhost');
         if ($local) {

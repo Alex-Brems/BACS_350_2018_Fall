@@ -17,7 +17,8 @@
                     <img src="Bear.png" alt="Bear Logo"/>
                 </header>
                 <main>
-                    <h1>NO CACHING HERE</h1>
+                    &lt;h1&gt;NO CACHING HERE</h1>
+                    
                 </main>
             </body>
         </html>

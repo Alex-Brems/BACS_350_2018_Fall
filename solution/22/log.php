@@ -148,7 +148,7 @@
             
     ---------------------------------------------- */
     
-    require_once 'db.php';
+    require_once 'subscriber_db.php';
 
 
     // My log list
@@ -158,7 +158,7 @@
         private $db;
 
         function __construct() {
-            $this->db =  connect_database();
+            $this->db =  subscribers_connect();
         }
 
         

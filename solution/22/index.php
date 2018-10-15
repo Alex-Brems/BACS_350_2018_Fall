@@ -10,32 +10,21 @@
 
     // Page Content
     echo '<p><a href="..">Solutions</a></p>';
+    echo '<p><a href="pagelog.php">Page Log</a></p>';
     
     
     // Bring in subscribers logic
     require_once 'subscriber.php';
     
 
-    /* 
-        This code used to be in the file "insert.php".
-        The old solution required a different page to be written.
-        After a successful SQL INSERT there was a redirect back
-        to the index.php page.
-        
-        This new solution uses a single page.
-    */
+    // Log the page load
+    require_once 'log.php';
+    
+    $log->log_page("subscriber/index.php");
 
 
-    // Show the add form
-    $action = filter_input(INPUT_POST, 'action');
-    if ($action == 'add') {
-        // Pick out the inputs
-        $name  = filter_input(INPUT_POST, 'name');
-        $email = filter_input(INPUT_POST, 'email');
-        $subscribers->add($name, $email);
-    }
-
-    // $subscribers->handle_add($name, $email);
+    // Add record from form
+    $subscribers->handle_actions();
 
 
     // Render a list of subscribers
@@ -44,6 +33,10 @@
 
     // Show the add form
     $subscribers->add_form();
+
+
+    // Clear the list by sending "action" of "clear" to this view
+    echo '<p><a href="index.php?action=clear" class="btn">Clear Log</a></p>';
 
 
     end_page();
