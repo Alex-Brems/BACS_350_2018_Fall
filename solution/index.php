@@ -80,7 +80,18 @@
             <li>
                 <a href="19">19. Objects </a> - Use objects to define app data types.
             </li>
-            
+             <li>
+                <a href="20">20. Regular Expressions </a> - String replacement
+            </li> 
+            <li>
+                <a href="22">22. Controller </a> - Post results to same page
+            </li>
+            <li>
+                <a href="23">23. HTML Templates </a> - Reading HTML from files
+            </li>
+            <li>
+                <a href="24">24. Page Templates </a> - Building a page from template
+            </li>
         </ul>
     ';
 

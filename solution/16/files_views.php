@@ -35,18 +35,18 @@
             echo '<div class="card"><h3>Files in Directory</h3>';
 
             // List the files as links
-            if (count($files) == 0) :
+            if (count($files) == 0) {
                 echo '<p>No images uploaded.</p>';
-            else:
+            } else {
                 echo '<ul>';
 
-                foreach($files as $filename) :
+                foreach($files as $filename) {
                     $file_url = '.?path=' . $path . '/' . urlencode($filename);
                     echo '<li><a href="' . $file_url . '">' . $filename . '</a></li>';
-                endforeach;
+                }
 
                 echo '</ul>';
-            endif;
+            }
             echo '</div>';
         }
     }

@@ -1,35 +1,42 @@
 <?php
 
-    // Setup a page title variable
-    $page_title = "Template Index Listing";
+    require_once 'views.php';
+ 
+    $site_title = 'BACS 350 - Demo Server';
+    $page_title = 'Directory List';
+    begin_page($site_title, $page_title);
 
-    // Page Start
-    include 'header.php';
+
+    // Page Content Goes here
+    
+    // Include the main page content
+    echo '<h1>Project List</h1><p>This demo show how to list all of the projects.</p>';
+
 
     // Define directory listing
     include 'files.php';
 
     // Get the files in the current directory
     $path = '.';
-    $files = get_file_list($path);
+    $dirs = get_dir_list($path);
 
     echo '<h2>Files in Templates Directory</h2>';
 
     // List the files as links
-    if (count($files) == 0) :
+    if (count($dirs) == 0) :
         echo '<p>No images uploaded.</p>';
     else:
         echo '<ul>';
 
-        foreach($files as $filename) :
-            $file_url = $path . '/' . urlencode($filename);
-            echo '<li><a href="' . $file_url . '">' . $filename . '</a></li>';
+        foreach($dirs as $d) :
+            $url = $path . '/' . urlencode($d);
+            echo '<li><a href="' . $url . '">' . $d . '</a></li>';
         endforeach;
 
         echo '</ul>';
     endif;
 
-    // Page End
-    include 'footer.php';
+     
+    end_page();
 
 ?>
