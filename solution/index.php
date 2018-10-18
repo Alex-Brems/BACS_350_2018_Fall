@@ -92,6 +92,9 @@
             <li>
                 <a href="24">24. Page Templates </a> - Building a page from template
             </li>
+            <li>
+                <a href="25">25. View Templates </a> - Building a page from multiple views
+            </li>
         </ul>
     ';
 

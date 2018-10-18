@@ -21,9 +21,10 @@
     $dirs = get_dir_list($path);
 
     // List the files as links
-    if (count($dirs) == 0) {}
-        echo '<p>No images uploaded.</p>';
-    } else {
+    if (count($dirs) == 0) {
+        echo '<p>No files in list.</p>';
+    } 
+    else {
         echo '<ul>';
 
         foreach($dirs as $d) {
