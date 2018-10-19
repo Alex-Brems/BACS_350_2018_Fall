@@ -10,8 +10,8 @@
         $items = scandir($path);
         foreach ($items as $item) {
              $item_path = $path . DIRECTORY_SEPARATOR . $item;
-             if (is_file($item_path)) {
-                 $files[] = $item;
+             if (is_dir($item_path)) {
+                 $files[] = $item_path;
              }
         }
         return $files;
@@ -27,7 +27,7 @@
         foreach ($items as $item) {
              $item_path = $path . DIRECTORY_SEPARATOR . $item;
              if (is_dir($item_path)) {
-                 $files[] = $item;
+                 $files[] = $item_path;
              }
         }
         return $files;
@@ -36,11 +36,14 @@
 
     // read_file
     // $text = readfile('index.php');
-    // file_put_contents('/ex04.php', read_file('index.php'));
     function read_file($path) {
         $text = file_get_contents($path);
         $text = htmlspecialchars($text);
         return $text;
     }
+
+
+    // file_put_contents('/ex04.php', read_file('index.php'));
+
     
 ?>

@@ -114,7 +114,7 @@
 
 
     // render_list -- Loop over all of the log to make a bullet list
-    function render_list($list) {
+    function render_history($list) {
 
         echo '
             <div class="card">
@@ -192,7 +192,7 @@
         
         // Views
         function show_log() {
-            render_list($this->query());
+            render_history($this->query());
         }
         
         function add_form() {
