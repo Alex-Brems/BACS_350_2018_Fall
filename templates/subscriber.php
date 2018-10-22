@@ -35,12 +35,16 @@
             return add_subscriber ($this->db, $name, $email);
         }
         
-        function handle_add() {
+        function handle_actions() {
             $action = filter_input(INPUT_POST, 'action');
             if ($action == 'add') {
                 $name  = filter_input(INPUT_POST, 'name');
                 $email = filter_input(INPUT_POST, 'email');
                 $this->add($name, $email);
+            }
+            $action = filter_input(INPUT_GET, 'action');
+            if ($action == 'clear') {
+                $this->clear();
             }
         }
         

@@ -45,8 +45,8 @@
     $settings = array(
         "page_title" => "My Projects", 
         "site_title" => "BACS 350 Projects",
-        "style"      => 'style.css',
-//        "style"      => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+//        "style"      => 'style.css',
+        "style"      => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
         "content"    => $content);
 
     echo render_page($settings);

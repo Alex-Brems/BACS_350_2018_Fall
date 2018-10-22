@@ -1,4 +1,5 @@
 <?php
+    require_once 'files.php';
 
     // article_settings -- Create the HTML page for one article.
     function article_settings($title, $body, $author) {
@@ -101,12 +102,13 @@
     // render_links -- Create a bullet list of hyperlinks in HTML
     function render_links($list) {
         $s = '<ul>';
-        foreach($list as $text => $url) {
-            $s .= "<li>" . render_link($text, $url) . "</li>";
+        foreach($list as $i) {
+            $s .= "<li>" . render_link($i, $i) . "</li>";
         }
         $s .= '</ul>';
         return $s;
     }
+
 
     // render_link -- Create a hyperlink in HTML
     function render_link($text, $url) {
@@ -118,7 +120,7 @@
     function render_list($list) {
         $s = '<ul>';
         foreach($list as $i) {
-            $s .= "<li>$i</li>";
+            $s .= render_template('list.html', array('item' => $i));
         }
         $s .= '</ul>';
         return $s;
