@@ -1,4 +1,5 @@
 <?php
+    require_once 'files.php';
 
     // article_settings -- Create the HTML page for one article.
     function article_settings($title, $body, $author) {
@@ -101,18 +102,11 @@
     // render_links -- Create a bullet list of hyperlinks in HTML
     function render_links($list) {
         $s = '<ul>';
-        foreach($list as $text => $url) {
-            $s .= "<li>" . render_link($text, $url) . "</li>";
+        foreach($list as $i) {
+            $s .= "<li>" . render_link($i, $i) . "</li>";
         }
         $s .= '</ul>';
         return $s;
-    }
-
-    
-    // render_links_card -- Create a card with a collection of links
-    function render_links_card($title, $description, $links) {
-        $links = render_links($links);
-        return render_card($title,"<p>$description</p>$links");
     }
 
 
@@ -126,7 +120,7 @@
     function render_list($list) {
         $s = '<ul>';
         foreach($list as $i) {
-            $s .= "<li>$i</li>";
+            $s .= render_template('list.html', array('item' => $i));
         }
         $s .= '</ul>';
         return $s;
@@ -136,12 +130,6 @@
     // render_page -- Create one HTML page from a template.
     function render_page($settings) {
         return render_template("page.html", $settings);
-    }
-
-
-    // render_source_code -- Display the source code from a file
-    function render_source_code($path) {
-        return '<pre>' . htmlspecialchars(file_get_contents($path)) . '</pre>';
     }
 
     

@@ -10,7 +10,7 @@
         $items = scandir($path);
         foreach ($items as $item) {
              $item_path = $path . DIRECTORY_SEPARATOR . $item;
-             if (is_file($item_path)) {
+             if (is_dir($item_path)) {
                  $files[] = $item_path;
              }
         }

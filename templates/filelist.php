@@ -7,23 +7,23 @@
 
     $path = filter_input(INPUT_GET, 'path');
     
-    $text = '<h2>Directories in Solutions</h2>
-        <p>This demo show how to list all of the projects.</p>
+    $text = '<h2>Files in Templates</h2>
+        <p>This demo shows how to list all of the files within a directory.</p>
         <p>Directory Path = ' . $path;
 
 
     // Define directory listing
-    include 'files.php';
+    require_once 'files.php';
 
     // Get the files in the current directory
-    $dirs = get_dir_list($path);
+    $files = get_file_list($path);
 
-    $content = render_links($dirs);
+    $content = render_list($files);
 
      
     $settings = array(
         "site_title" => "BACS 350 Templates",
-        "page_title" => "Directory List", 
+        "page_title" => "File List", 
         "style"      => 'style.css',
         "content"    => $text . $content);
 

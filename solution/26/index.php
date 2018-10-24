@@ -1,7 +1,5 @@
 <?php
 
-    
-    // Start the page
     require_once 'views.php';
 
 
@@ -87,52 +85,12 @@
 //    }
 
 
-    // -----------------------------
-    // Cookies
-    // -----------------------------
-
-
-    // Handle first time
-    
-    $before = "Before: Cookie = $_COOKIE[FIRST_TIME]";
-
-    
-    if (!isset($_COOKIE['FIRST_TIME']) or $_COOKIE['FIRST_TIME'] == "TRUE") {
-        setcookie ('FIRST_TIME', 'FALSE');
-        echo "<h1>First Time (cookie $_COOKIE[FIRST_TIME])</h1>";
-    }
-    echo "<h2>Page Loading (cookie FIRST = $_COOKIE[FIRST_TIME])</h2>";
-//    setcookie ('FIRST_TIME', 'TRUE');
-    //unset($_COOKIE['FIRST_TIME']);
-    $after = "After: Cookie = $_COOKIE[FIRST_TIME]";
-    $content = render_card("Cookies", $before . $after);
-
-/*
-    
-    // Handle Shopping Cart
-    
-    if (isset('SHOPPING')) {
-        show_shopping_cart();
-    }
-    
-    if (choose_items){
-        set_session ('SHOPPING');
-    }
-    if (cancel_items) {
-        set_session ('SHOPPING');
-    }
-    
-    show_content();
-*/  
    
-//    $content = $template;
-
     // Create main part of page content
     $settings = array(
         "site_title" => "BACS 350 Projects",
-        "page_title" => "Pro", 
+        "page_title" => "Error Handling Demos", 
         "style"      => 'style.css',
-//        "style"      => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
         "content"    => $content);
 
     echo render_page($settings);
