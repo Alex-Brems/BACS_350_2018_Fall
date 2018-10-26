@@ -1,51 +1,101 @@
 <?php
 
-    // Start the page
     require_once 'views.php';
- 
-    $site_title = 'BACS 350 - Demo Server';
-    $page_title = 'MVC Pattern';
-    begin_page($site_title, $page_title);
 
 
-    // Page Content
-    echo '<p><a href="pattern.php">MVC Pattern</a></p>';
+    // Log the page load
+    require_once 'log.php';
+    $log->log_page("solution/27");
 
-    require_once 'subscriber_db.php';
-    require_once 'subscriber_views.php';
+    echo '<a href="pagelog.php">Page Log</a>';
 
-    class Subscribers {
+    if (! isset($_COOKIE['FIRST_TIME'])) {
+        $_COOKIE['FIRST_TIME'] = "TRUE";
+    } 
         
-        public $db;
 
-        function __construct() {
-            $this->db =  subscribers_connect();
-        }
-
-        function query() {
-            return query_subscribers($this->db);
-        }
+//    if (! isset($_SESSION['SHOPPING'])) {
+//        $_SESSION['SHOPPING'] = 'FALSE';
+//    }
         
-        function show_subscribers() {
-            render_list($this->query());
-        }
+    $log->log_page( "solution/27  Cookie First: $_COOKIE[FIRST_TIME]");
+//    $log->log_page( "solution/27  Cookie Shopping: $_COOKIE[SHOPPING]");
+
+
+    // -----------------------------
+    // Cookies
+    // -----------------------------
+
+    function show_first_time() {
+        setcookie ('FIRST_TIME', 'FALSE');
+        return 'We see this is your First Time.   Sign up now to make all of your dreams come true.';
     }
 
-    $subscribers = new Subscribers();
+    function show_not_first_time() {
+//        setcookie ('FIRST_TIME', 'TRUE');
+        return 'NOT First time';
+        
+    }
+
+    function show_buy_now() {
+        return 'Buy Now.    Sign up now to make all of your dreams come true.  
+            <a href="index.php?shopping=TRUE">BUY</a>';
+    }
+
+    function show_shopping_cart() {
+        return 'You Bought this.  <a href="index.php?shopping=FALSE">CANCEL</a>';
+    }
 
 
-    // View for listing subscribers
-    $subscribers->show_subscribers();
+
+    // Handle first time
+    
+//    $before = "Before: Cookie = $_COOKIE[FIRST_TIME]";
+
+    $content = "<h1>Demo of Cookies and Sessions</h1>";
+    
+    if ($_COOKIE['FIRST_TIME'] == "TRUE") {
+        $message = show_first_time();
+    }
+    else {
+        $message = show_not_first_time();
+    }
+    $content .= render_card ("Welcome",$message);
 
 
-//    // Form view to add subscriber
-//    add_subscriber_form();
-//
-//
-//    // Button to clear
-//    echo '<a href="delete.php">Reset Subscribers</a>';
-//
-//        
-    // End the page
-    end_page();
+    // Handle Shopping Cart
+
+    $shopping = filter_input(INPUT_GET, 'shopping');
+
+    if ($shopping == 'TRUE') {
+        session_start ();
+        $_SESSION['SHOPPING'] = 'TRUE';
+    }
+    else {
+        $_SESSION['SHOPPING'] = 'FALSE';
+    }
+
+    if (isset($_SESSION['SHOPPING']) and $_SESSION['SHOPPING']=='TRUE') {
+        $message =  show_shopping_cart();
+    }
+    else {
+        $message =  show_buy_now();
+    }
+    $content .= render_card ("PURCHASE", $message);
+    
+//    $after = "After: Cookie = $_COOKIE[FIRST_TIME]";
+//    $status = render_card("Cookies", $before . $after);
+
+//    $content = 'none';
+
+    // Create main part of page content
+    $settings = array(
+        "site_title" => "BACS 350 Projects",
+        "page_title" => "Cookies & Sessions", 
+        "style"      => 'style.css',
+        "content"    => $content);
+
+    echo render_page($settings);
+
+
 ?>

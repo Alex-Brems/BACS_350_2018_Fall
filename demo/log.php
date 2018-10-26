@@ -97,17 +97,15 @@
 
 
     // add_log_form -- Create an HTML form to add record.
-    function add_log_form($page) {
+    function add_log_form() {
         
-        return '
+        echo '
             <div class="card">
                 <h3>Add log</h3>
             
-                <form action="' . $page . '" method="get">
+                <form action="insert.php" method="post">
                     <p><label>Text:</label> &nbsp; <input type="text" name="text"></p>
-                    <input class="btn" type="submit" value="Log This"/>
-                    <button class="btn"><a href="pagelog.php?action=clear">Clear Log</a></button>
-                    <input type="hidden" name="action" value="add">
+                    <p><input type="submit" value="Sign Up"/></p>
                 </form>
             </div>
             ';
@@ -117,12 +115,19 @@
 
     // render_list -- Loop over all of the log to make a bullet list
     function render_history($list) {
-        $text = '<h3>Page Load History</h3><ul>';
+
+        echo '
+            <div class="card">
+                <h3>Page Load History</h3> 
+                <ul>
+            ';
         foreach ($list as $s) {
-            $text .= '<li>' . $s['id'] . ', ' . $s['date'] . ', ' . $s['text'] . '</li>';
+            echo '<li>' . $s['id'] . ', ' . $s['date'] . ', ' . $s['text'] . '</li>';
         }
-        $text .= '</ul>';
-        return $text;     
+        echo '
+                </ul>
+            </div>';
+     
     }
 
     
@@ -170,20 +175,14 @@
             return add_log ($this->db, $text);
         }
         
-        function log_page() {
+        function log_page($page) {
             $action = filter_input(INPUT_POST, 'action') . filter_input(INPUT_GET, 'action');
-            $this->log ("$_SERVER[PHP_SELF] (action=$action)");
-        }
-        
-        function log_event($page, $event) {
-            $this->log ("$page, $event");
+            $text = "$page (action=$action)";
+            $this->log ($text);
         }
         
         function handle_actions() {
             $action = filter_input(INPUT_GET, 'action');
-            if ($action == 'add') {
-                $this->log(filter_input(INPUT_GET, 'text'));
-            }
             if ($action == 'clear') {
                 $this->clear();
             }
@@ -193,11 +192,11 @@
         
         // Views
         function show_log() {
-            return render_history($this->query());
+            render_history($this->query());
         }
         
-        function show_add($page) {
-            return add_log_form($page);
+        function add_form() {
+            add_log_form();
         }
     }
 

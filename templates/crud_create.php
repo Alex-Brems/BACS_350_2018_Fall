@@ -5,7 +5,7 @@
 
     // Log the page load
     require_once 'log.php';
-    $log->log_page("templates/crud_create.php");
+    $log->log_page();
 
 
     // Connect to the database

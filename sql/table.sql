@@ -1,4 +1,4 @@
-// Create table subscribers: name, email
+-- Create table subscribers: name, email
 
 CREATE TABLE subscribers (
   id int(3) NOT NULL AUTO_INCREMENT,
@@ -8,7 +8,7 @@ CREATE TABLE subscribers (
 );
 
 
-// Create table log: date, text
+-- Create table log: date, text
 
 CREATE TABLE log (
   id int(3) NOT NULL AUTO_INCREMENT,
@@ -18,7 +18,7 @@ CREATE TABLE log (
 );
 
 
-// Create table books: title, author, text
+-- Create table books: title, author, text
 
 CREATE TABLE books (
   id int(3) NOT NULL AUTO_INCREMENT,

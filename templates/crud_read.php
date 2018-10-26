@@ -9,7 +9,7 @@
 
     // Log the page load
     require_once 'log.php';
-    $log->log_page("templates/crud_read.php");
+    $log->log_page();
 
 
     // Query for all subscribers
