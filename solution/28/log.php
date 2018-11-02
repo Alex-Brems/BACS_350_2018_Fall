@@ -118,7 +118,6 @@
     // render_list -- Loop over all of the log to make a bullet list
     function render_history($list) {
         $text = '<h3>Page Load History</h3><ul>';
-        date_default_timezone_set("America/Denver");
         foreach ($list as $s) {
             $text .= '<li>' . $s['id'] . ', ' . $s['date'] . ', ' . $s['text'] . '</li>';
         }

@@ -1,6 +1,8 @@
 <?php 
     
     require_once 'views.php';
+    require_once 'log.php';
+    $log->log_page();
 
     // Create main part of page content
     $intro_text = "<p>These templates are reusable code to build apps the easy way.</p>";

@@ -107,6 +107,7 @@
                     <p><label>Text:</label> &nbsp; <input type="text" name="text"></p>
                     <input class="btn" type="submit" value="Log This"/>
                     <button class="btn"><a href="pagelog.php?action=clear">Clear Log</a></button>
+                    <button class="btn"><a href="index.php">Home</a></button>
                     <input type="hidden" name="action" value="add">
                 </form>
             </div>
@@ -117,8 +118,7 @@
 
     // render_list -- Loop over all of the log to make a bullet list
     function render_history($list) {
-        $text = '<h3>Page Load History</h3><ul>';
-        date_default_timezone_set("America/Denver");
+        $text = '<h3>Application History</h3><ul>';
         foreach ($list as $s) {
             $text .= '<li>' . $s['id'] . ', ' . $s['date'] . ', ' . $s['text'] . '</li>';
         }

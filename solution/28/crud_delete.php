@@ -3,6 +3,7 @@
     // Connect to the database
     require_once 'db.php';
 
+
     // Modify Database Record
     $action = filter_input(INPUT_GET, 'action');
     $id = filter_input(INPUT_GET, 'id');
@@ -18,6 +19,6 @@
 
     }
    
-   header('Location: crud_read.php');
+   header('Location: index.php');
 
 ?>

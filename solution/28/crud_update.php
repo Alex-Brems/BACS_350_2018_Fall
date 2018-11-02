@@ -1,8 +1,6 @@
 <?php
 
     require_once 'views.php';
-
-    // Connect to the database
     require_once 'db.php';
 
 
@@ -30,7 +28,7 @@
                     <p><label>Name:</label> &nbsp; <input type="text" name="name" value="' . $name . '"></p>
                     <p><label>Email:</label> &nbsp; <input type="text" name="email" value="' . $email . '"></p>
                     <p><input type="submit" value="Save Record"/></p>
-                    <input type="hidden" name="action" value="edit">
+                    <input type="hidden" name="action" value="update">
                     <input type="hidden" name="id" value="' . $id . '">
                 </form>
             </div>
@@ -39,11 +37,13 @@
 
 
     // Update the database
-    function edit_subscriber() {
+    function update_subscriber() {
         $id    = filter_input(INPUT_POST, 'id');
         $name  = filter_input(INPUT_POST, 'name');
         $email = filter_input(INPUT_POST, 'email');
         
+        //echo "edit: $name $email";
+
         // Modify database row
         $query = "UPDATE subscribers SET name = :name, email = :email WHERE id = :id";
         global $db;
@@ -56,7 +56,7 @@
         $statement->execute();
         $statement->closeCursor();
         
-        header('Location: crud_read.php');
+        header('Location: index.php');
     }
  
 
@@ -74,8 +74,8 @@
     
     // Modify Database Record
     $action = filter_input(INPUT_POST, 'action');
-    if ($action == 'edit') {
-        edit_subscriber();
+    if ($action == 'update') {
+        update_subscriber();
     }
    
 

@@ -7,7 +7,7 @@
     
     Usage:
         require_once 'db.php';
-        $db = connect_database();
+        $db = subscribers_connect();
         
 */
 

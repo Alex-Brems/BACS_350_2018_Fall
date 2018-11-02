@@ -10,18 +10,63 @@
     }
     
 
+    // array_string -- Format an array as a string
+    function array_string($array) {
+        $s = 'array(';
+        foreach ($array as $key => $value) {
+            $s .= "\"$key\"  => \"$value\",\n    ";
+        }
+        $s .= ')';
+        return $s;
+    }
+
+    
+    // begin_page -- Create the HTML for the beginning of a page.  Add a page title and headline.
+    function begin_page($site_title, $page_title) {
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        header("Cache-Control: no-store, no-cache, must-revalidate");
+        
+        echo '
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+        
+                    <meta charset="UTF-8">
+                    <title>' . $page_title . '</title>
+
+                    <link rel="stylesheet" href="style.css">
+
+                </head>
+                <body>
+
+                    <header>
+                        <img src="Bear.png" alt="Bear Logo"/>
+                        <h1>' . $site_title . '</h1>
+                        <h2>' . $page_title . '</h2>
+                    </header>
+                    <main>
+        ';
+    }
+
+
+    // end_page -- Create the HTML for the end of a page.
+    function end_page() {
+        echo '
+                    </main>
+                </body>
+            </html>
+        ';
+        
+    }
+
+
     // render_article -- Create the HTML page for one article.
     function render_article($title, $paragraphs) {
         $body = implode('</p><p>', $paragraphs);
         $settings = array('title' => $title, 'body' => $body);
         $text = transform_text('<h3>{{ title }}</h3><p>{{ body }}</p>', $settings);
         return $text;
-    }
-
-
-    // render_button -- Show a styled button
-    function render_button($text, $url) {
-        return '<button class="btn">' . render_link($text, $url) . '</button>';
     }
 
 

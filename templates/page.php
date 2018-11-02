@@ -8,6 +8,7 @@
     $settings = array(
         "site_title" => "BACS 350 Templates",
         "page_title" => "Simple Rendered Page", 
+        'logo'       => 'Bear.png',
         "style"      => 'style.css',
         "content"    => $content);
 

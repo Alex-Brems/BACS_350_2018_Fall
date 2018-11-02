@@ -4,8 +4,6 @@
     require_once 'db.php';
     require_once 'log.php';
 
-    $page = 'email_list.php';
-
 
     // Add a new record
     function add_subscriber($db) {
@@ -18,8 +16,7 @@
             $statement->bindValue(':email', $email);
             $statement->execute();
             $statement->closeCursor();
-            global $page;
-            header("Location: $page");
+            header('Location: index.php');
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Error: $error_message</p>";
@@ -29,11 +26,10 @@
 
     // Show form for adding a record
     function add_subscriber_view() {
-        global $page;
         return '
             <div class="card">
                 <h3>Add Subscriber</h3>
-                <form action="' . $page . '" method="post">
+                <form action="index.php" method="post">
                     <p><label>Name:</label> &nbsp; <input type="text" name="name"></p>
                     <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
                     <p><input type="submit" value="Sign Up"/></p>
@@ -55,8 +51,7 @@
             $statement->execute();
             $statement->closeCursor();
         }
-        global $page;
-        header("Location: $page");
+        header('Location: index.php');
     }
     
 
@@ -65,11 +60,10 @@
         $id    = $record['id'];
         $name  = $record['name'];
         $email = $record['email'];
-        global $page;
         return '
             <div class="card">
                 <h3>Edit Subscriber</h3>
-                <form action="' . $page . '" method="post">
+                <form action="index.php" method="post">
                     <p><label>Name:</label> &nbsp; <input type="text" name="name" value="' . $name . '"></p>
                     <p><label>Email:</label> &nbsp; <input type="text" name="email" value="' . $email . '"></p>
                     <p><input type="submit" value="Save Record"/></p>
@@ -146,14 +140,13 @@
 
     // render_table -- Create a bullet list in HTML
     function subscriber_list_view ($table) {
-        global $page;
-        $s = render_button('Add Subscriber', "$page?action=add") . '<br><br>';
+        $s = render_button('Add Subscriber', 'index.php?action=add') . '<br><br>';
         $s .= '<table>';
         $s .= '<tr><th>Name</th><th>Email</th></tr>';
         foreach($table as $row) {
-            $edit = render_link($row[1], "$page?id=$row[0]&action=edit");
+            $edit = render_link($row[1], "index.php?id=$row[0]&action=edit");
             $email = $row[2];
-            $delete = render_link("delete", "$page?id=$row[0]&action=delete");
+            $delete = render_link("delete", "index.php?id=$row[0]&action=delete");
             $row = array($edit, $email, $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
@@ -180,8 +173,7 @@
         $statement->execute();
         $statement->closeCursor();
         
-        global $page;
-        header("Location: $page");
+        header('Location: index.php');
     }
  
 

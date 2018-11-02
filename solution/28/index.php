@@ -1,14 +1,11 @@
 <?php
-
+    
     require_once 'views.php';
-
-
-    // Connect to the database
     require_once 'db.php';
+    require_once 'log.php';
 
 
     // Log the page load
-    require_once 'log.php';
     $log->log_page();
 
 
@@ -23,7 +20,8 @@
 
     // render_table -- Create a bullet list in HTML
     function subscriber_list($table) {
-        $s = '<table>';
+        $s = render_link('Add Subscriber', 'crud_create.php') . '<br><br>';
+        $s .= '<table>';
         $s .= '<tr><th>Name</th><th>Email</th></tr>';
         foreach($table as $row) {
             $edit = render_link($row[1], "crud_update.php?id=$row[0]");
@@ -33,6 +31,7 @@
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
         $s .= '</table>';
+        
         return $s;
     }
 
@@ -40,17 +39,19 @@
     // Display the page content
     
     $list = subscriber_list(query_subscribers ($db));
-    $link = '<div>' . render_link('CRUD', 'crud.php') . '</div>';
-    $content = $link . render_card("Subscriber List", $list);
+    
+    $content = render_card("Subscribers", $list);
 
 
     // Create main part of page content
     $settings = array(
-        "site_title" => "Subscriber CRUD Templates",
-        "page_title" => "CRUD - READ", 
+        "site_title" => "Email Manager",
+        "page_title" => "Demo of CRUD Logic", 
         "style"      => 'style.css',
         "content"    => $content);
 
     echo render_page($settings);
+
+
 
 ?>
