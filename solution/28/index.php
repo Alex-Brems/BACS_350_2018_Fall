@@ -37,10 +37,14 @@
 
 
     // Display the page content
-    
+
+    $content = render_button('Templates', '../../templates');
+    $content .= render_button('Solutions', '..');
+    $content .= render_button('Show Log', 'pagelog.php');
+
+    // Show subscriber list
     $list = subscriber_list(query_subscribers ($db));
-    
-    $content = render_card("Subscribers", $list);
+    $content .= render_card("Subscribers", $list);
 
 
     // Create main part of page content
@@ -51,7 +55,5 @@
         "content"    => $content);
 
     echo render_page($settings);
-
-
 
 ?>

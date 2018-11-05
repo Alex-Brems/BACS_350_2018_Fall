@@ -1,0 +1,13 @@
+#!/bin/bash
+# Setup project context
+
+
+cat welcome-blue
+
+# Path variable
+export PATH=/bin:\
+/usr/bin
+
+
+cd public_html/bacs_350
+

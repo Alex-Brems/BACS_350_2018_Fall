@@ -41,7 +41,7 @@
         try {
             // Create a string for "now"
             date_default_timezone_set("America/Denver");
-            $date = date('Y-m-d g:i:s a');
+            $date = date('Y-m-d g:i a');
             
             // Add database row
             $query = "INSERT INTO log (date, text) VALUES (:date, :text);";
@@ -121,7 +121,7 @@
     function render_history($list) {
         $text = '<h3>Application History</h3><ul>';
         foreach ($list as $s) {
-            $text .= '<li>' . $s['date'] . ', ' . $s['text'] . '</li>';
+            $text .= '<li>' . $s['id'] . ', ' . $s['date'] . ', ' . $s['text'] . '</li>';
         }
         $text .= '</ul>';
         return $text;     
@@ -154,8 +154,8 @@
         // Database connection
         private $db;
 
-        function __construct() {
-            $this->db =  connect_database();
+        function __construct($db) {
+            $this->db =  $db;
         }
 
         
@@ -205,6 +205,6 @@
 
 
     // Create a list object and connect to the database
-    $log = new Log;
+    $log = new Log($db);
 
 ?>

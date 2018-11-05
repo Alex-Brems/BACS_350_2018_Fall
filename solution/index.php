@@ -111,7 +111,10 @@
                 <a href="29">29. Data App </a> - Object encapsulation of operations
             </li>
             <li>
-                <a href="30">30. ___ </a> - Object encapsulation of operations
+                <a href="30">30. User Authentication </a> - Login and user registration
+            </li>
+            <li>
+                <a href="31">31. Encapsulation </a> - Issue tracking system
             </li>
         </ul>
     ';
