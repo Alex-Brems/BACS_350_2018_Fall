@@ -40,7 +40,8 @@
         // Show if insert is successful or not
         try {
             // Create a string for "now"
-            $date = date('Y-m-d g:i a');
+            date_default_timezone_set("America/Denver");
+            $date = date('Y-m-d g:i:s a');
             
             // Add database row
             $query = "INSERT INTO log (date, text) VALUES (:date, :text);";
@@ -107,6 +108,7 @@
                     <p><label>Text:</label> &nbsp; <input type="text" name="text"></p>
                     <input class="btn" type="submit" value="Log This"/>
                     <button class="btn"><a href="pagelog.php?action=clear">Clear Log</a></button>
+                    <button class="btn"><a href="index.php">Home</a></button>
                     <input type="hidden" name="action" value="add">
                 </form>
             </div>
@@ -117,9 +119,9 @@
 
     // render_list -- Loop over all of the log to make a bullet list
     function render_history($list) {
-        $text = '<h3>Page Load History</h3><ul>';
+        $text = '<h3>Application History</h3><ul>';
         foreach ($list as $s) {
-            $text .= '<li>' . $s['id'] . ', ' . $s['date'] . ', ' . $s['text'] . '</li>';
+            $text .= '<li>' . $s['date'] . ', ' . $s['text'] . '</li>';
         }
         $text .= '</ul>';
         return $text;     

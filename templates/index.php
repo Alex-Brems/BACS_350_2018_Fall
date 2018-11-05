@@ -1,11 +1,17 @@
 <?php 
-    
     require_once 'views.php';
+    require_once 'log.php';
+
+
+    // Log the page load
+    $log->log_page();
+    $content = render_button('Templates', 'index.php');
+    $content .= render_button('Solutions', '../solution');
+    $content .= render_button('Show Log', 'pagelog.php');
+
 
     // Create main part of page content
-    $intro_text = "<p>These templates are reusable code to build apps the easy way.</p>";
-
-    // Create main part of page content
+    $content .= "<p>These templates are reusable code to build apps the easy way.</p>";
 
 
     // Card 1
@@ -17,7 +23,7 @@
         "Header for Page" => "https://seamansguide.com/guide/PhpApps/templates/header.php",
         "Footer for Page" => "https://seamansguide.com/guide/PhpApps/templates/footer.php",
     );
-    $card1 = render_links_card($title, $text, $links);
+    $content .= render_links_card($title, $text, $links);
 
 
     // Card 2
@@ -30,17 +36,18 @@
         "UPDATE" => "crud_update.php",
         "DELETE" => "crud_delete.php",
     );
-    $card2 = render_links_card($title, $text, $links);
+    $content .= render_links_card($title, $text, $links);
 
 
     // Card 3
     $title = 'Logging and Error Handling';
     $text= "Demonstrate how to perform each CRUD operation (both view and data)";
     $links = array(
-        "Page Load Logging" => "https://seamansguide.com/guide/PhpApps/templates/log.php",
-        "History of Pages" => "https://seamansguide.com/guide/PhpApps/templates/pagelog.php",
+        "Page Load Logging" => "view_source.php?path=log.php",
+        "History of Pages" => "pagelog.php",
+        'Local Time'        => 'timezone.php',
     );
-    $card3 = render_links_card($title, $text, $links);
+    $content .= render_links_card($title, $text, $links);
 
 
     // Card 4
@@ -52,15 +59,25 @@
         "File Listing" => "filelist.php?path=../templates",
         "View Source" => "view_source.php?path=index.php",
     );
-    $card4 = render_links_card($title, $text, $links);
+    $content .= render_links_card($title, $text, $links);
 
-    
+
+    // Card 5
+    $title = 'Apps';
+    $text = "Full size apps to work with one type of data";
+    $links = array(
+        "Email List" => "email_list.php"
+    );
+    $content .= render_links_card($title, $text, $links);
+
+
     // Display the entire page
     $settings = array(
         "site_title" => "BACS 350 Templates",
         "page_title" => "Index of Templates", 
+        'logo'       => 'Bear.png',
         "style"      => 'style.css',
-        "content"    => $intro_text . $card1 . $card2 . $card3 . $card4);
+        "content"    => $content);
 
     echo render_page($settings);
 

@@ -3,19 +3,21 @@
     // Connect to the database
     require_once 'db.php';
 
+    // Modify Database Record
+    $action = filter_input(INPUT_GET, 'action');
+    $id = filter_input(INPUT_GET, 'id');
+    if ($action == 'delete' and !empty($id)) {
 
-    echo '<h2>Delete Test User</h2>';
+        // Delete database row
+        $query = "DELETE from subscribers WHERE id = :id";
 
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+        $statement->closeCursor();
 
-    // Modify database row
-    $query = "DELETE from subscribers WHERE id = 1";
-
-    $statement = $db->prepare($query);
-    $statement->execute();
-    $statement->closeCursor();
-
-
-    // Display subscriber records
-    require 'select.php';
+    }
+   
+   header('Location: crud_read.php');
 
 ?>

@@ -10,7 +10,8 @@
 
     //Show links to demo pages
     $links = array('CREATE'=>'crud_create.php',
-                   'READ'=>'crud_read.php');
+                   'READ'=>'crud_read.php',
+                   'UPDATE'=>'crud_update.php?id=1');
     $content = render_card("Page Template", render_links($links));
 
 
