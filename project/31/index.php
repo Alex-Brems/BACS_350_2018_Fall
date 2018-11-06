@@ -4,12 +4,11 @@
     require_once 'views.php';
  
     $site_title = 'BACS 350 - Index of Project 31';
-    $page_title = 'Objects for Data';
+    $page_title = 'Music Album Manager';
     begin_page($site_title, $page_title);
 
 
     // Page Content
-    echo '<p><a href="..">Solutions</a></p>';
     echo '<p><a href="pagelog.php">Page Log</a></p>';
     
     
