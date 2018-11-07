@@ -158,7 +158,11 @@
         private $db;
 
         function __construct() {
+<<<<<<< HEAD
             $this->db =  connect_database();
+=======
+            $this->db =remote_connect();
+>>>>>>> 190e4d4611484dfb17c21dcbf2aac908758883bd
         }
 
         

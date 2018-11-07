@@ -6,7 +6,11 @@
 
     // Log the page load
     require_once 'log.php';
+<<<<<<< HEAD
     $log->log_page("solution/24/example.php");
+=======
+    $log->log_page("project/24/example.php");
+>>>>>>> 190e4d4611484dfb17c21dcbf2aac908758883bd
 
 
     // Page Content

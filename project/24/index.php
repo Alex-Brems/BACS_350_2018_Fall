@@ -9,7 +9,11 @@
 
 
     // Page Content
+<<<<<<< HEAD
     echo '<p><a href="..">Projects</a></p>';
+=======
+    echo '<p><a href="..">Projectss</a></p>';
+>>>>>>> 190e4d4611484dfb17c21dcbf2aac908758883bd
     echo '<p><a href="pagelog.php">Page Log</a></p>';
     echo '<p><a href="example.php">Example of Page Template</a></p>';
 
