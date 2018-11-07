@@ -99,7 +99,7 @@
                 <a href="25">25. View Templates </a> - Building a page from multiple views
             </li>
              <li>
-                <a href="26">26. Error Handlings </a> - Deal with errors and exceptions
+                <a href="26">26. Error Handling </a> - Deal with errors and exceptions
             </li>
              <li>
                 <a href="27">27. Cookies and Sessions </a> - Use the browser to store values
