@@ -1,7 +1,50 @@
 <?php
  
+/*
+    User Auth
+    
+        password verification
+        login
+        register user
+        is_logged_in
+        user admin table
+        
+*/
+
+    // Controller for user authentication
+    function handle_auth_actions($auth) {
+        $action = filter_input(INPUT_GET, 'action');
+
+        if ($action == 'signup') {
+            return $auth->sign_up_form();
+        }
+        if ($action == 'login') {
+            return $auth->login_form();
+        }
+        
+        $action = filter_input(INPUT_POST, 'action');
+        if ($action == 'register') {
+            return $auth->register_user();
+        }
+        if ($action == 'validate') {
+            return $auth->validate($email, $password);
+        }
+    }
+
+
+    // Test if password is valid or not
+    function validate ($db, $email, $password) {
+        return is_valid_login ($db, $email, $password);
+    }
+
+
     // Set the password into the administrator table
-    function register_user($db, $email, $password, $first, $last) {
+    function register_user($db) {
+        
+        $email    = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+        $first    = filter_input(INPUT_POST, 'first');
+        $last     = filter_input(INPUT_POST, 'last');
         
         global $log;
         $log->log("$email, $first, $last");
@@ -59,7 +102,63 @@
         
     }
 
+    function login_form() {
+        global $log;
+        $log->log("Show Login Form");
+        
+        return '
+            <div class="card">
+                <h3>Login</h3>
+            
+                <form action="index.php" method="post">
+                    <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
+                    <br>
+                    <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
+                    <br>
+                    <p><input type="submit" value="Login" class="btn"/></p>
+                </form>
+            </div>
+            ';
+        
+    }
 
+    function sign_up_form() {
+        global $log;
+        $log->log("Show Sign Up Form");
+        
+        return '
+            <div class="card">
+                <h3>Sign Up</h3>
+            
+                <form action="index.php" method="post">
+                    <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
+                    <br>
+                    <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
+                    <br>
+                    <p><label>First Name:</label> &nbsp; <input type="text" name="first"></p>
+                    <br>
+                    <p><label>Last Name:</label> &nbsp; <input type="text" name="last"></p>
+                    <br>
+                    <p><input type="submit" value="Sign Up" class="btn"/></p>
+                </form>
+            </div>
+            ';
+        
+    }
+
+
+
+/*
+    Object API for Authentication
+    
+    usage: 
+        require_once 'auth.php';  // Setup auth code
+        
+        $auth->require_login();   // Go to login if needed
+        $auth->logout();          // Clear the session
+        $auth->sign_up();         // Sign up form for new user
+        
+*/
 
     // My log list
     class Authenticate {
@@ -70,17 +169,33 @@
             $this->db =  $db;
         }
 
-        function validate($email, $password) {
-            return is_valid_login($this->db, $email, $password);
+        function handle_actions() {
+            return handle_auth_actions($this->db);
         }
         
-        function register($email, $password, $first, $last) {
-            return register_user($this->db, $email, $password, $first, $last);
+        
+//        function ($email, $password) {
+//            return is_valid_login($this->db, $email, $password);
+//        }
+        
+        function register() {
+            return register_user($this->db);
         }
         
         function show_valid ($email, $password) {
             return show_valid ($this->db, $email, $password);
         }
+        
+        function require_login() {
+            if (! $this->logged_in()) {
+                header ('Location: login.php');
+            }
+        }
+        
+        function validate ($email, $password) {
+            return validate ($this->db, $email, $password);
+        }
+
     }
 
 
