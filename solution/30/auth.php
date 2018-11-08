@@ -10,30 +10,63 @@
         user admin table
         
 */
+    require_once 'db.php';
+
 
     // Controller for user authentication
-    function handle_auth_actions($auth) {
+    function handle_auth_actions() {
+        global $db;
         $action = filter_input(INPUT_GET, 'action');
         if ($action == 'signup') {
-            return $auth->sign_up_form();
+            return sign_up_form();
         }
         if ($action == 'login') {
-            return $auth->login_form();
+            return login_form('private.php');
+        }
+        if ($action == 'logout') {
+            return logout('private.php?action=login');
         }
         
         $action = filter_input(INPUT_POST, 'action');
         if ($action == 'register') {
-            return $auth->register_user();
+            return register_user($db);
         }
         if ($action == 'validate') {
-            return $auth->validate($email, $password);
+            return validate($db, $email, $password);
         }
     }
 
 
     // Test if password is valid or not
     function validate ($db, $email, $password) {
-        return is_valid_login ($db, $email, $password);
+        $email    = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+        global $log;
+        $log->log("Validate: $email, $password");
+        if (is_valid_login ($db, $email, $password)) {
+            session_start ();
+            $_SESSION['LOGGED_IN'] = 'TRUE';
+        }
+    }
+
+
+    // Check to see if user is already authenticated
+    function logged_in () {
+        session_start ();
+        global $log;
+        $log->log("logged_in: isset=" . isset($_SESSION['LOGGED_IN']));
+        if (isset($_SESSION['LOGGED_IN'])) {
+            $log->log("logged_in: logged_in=" . $_SESSION['LOGGED_IN']);
+        }
+        return (isset($_SESSION['LOGGED_IN']) and $_SESSION['LOGGED_IN']=='TRUE') ;
+    }
+
+
+    // Cancel the login
+    function logout ($page) {
+        session_start ();
+        unset($_SESSION['LOGGED_IN']);
+        header("Location: $page");
     }
 
 
@@ -66,22 +99,16 @@
 
 
     // Display if password is valid or not
-    function show_valid ($db, $email, $password) {
-        
+    function show_login () {
         global $log;
-        $content = "<p>User: $email</p><p>Password: $password</p>";
-        $valid_password = is_valid_login ($db, $email, $password);
-        
-        if ($valid_password) {
-            $log->log("User Verified: $email");
-            $content .= '<p>Is Valid</p>';
+        if (logged_in()) {
+            $log->log("User is Logged in");
+            return '<h3>Is Valid</h3>';
         }
         else {
-            $log->log("Bad user login: $email");
-            $content .= '<p>NOT Valid</p>';
+            $log->log("Bad user login");
+            return '<h3>NOT Valid</h3>';
         }
-        return $content;
-        
     }
 
 
@@ -101,7 +128,9 @@
         
     }
 
-    function login_form() {
+
+    // Show the login
+    function login_form($page) {
         global $log;
         $log->log("Show Login Form");
         
@@ -109,17 +138,29 @@
             <div class="card">
                 <h3>Login</h3>
             
-                <form action="index.php" method="post">
+                <form action="' . $page . '" method="post">
                     <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
                     <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
-                    <p><input type="submit" value="Login" class="btn"/></p>
+                    <p><input type="submit" value="Login" class="btn"></p>
+                    <input type="hidden" name="action" value="validate">
+                    <input type="hidden" name="next" value="' . $page . '">
                 </form>
             </div>
             ';
         
     }
 
-    function sign_up_form() {
+
+    // Do a login if needed
+    function require_login ($page){
+        if (! logged_in ()) {
+            header("Location: $page?action=login");
+        }
+    }
+
+
+    // Show the sign up
+    function sign_up_form($page) {
         global $log;
         $log->log("Show Sign Up Form");
         
@@ -127,12 +168,15 @@
             <div class="card">
                 <h3>Sign Up</h3>
             
-                <form action="index.php" method="post">
+                <form action="' . $page . '" method="post">
                     <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
                     <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
                     <p><label>First Name:</label> &nbsp; <input type="text" name="first"></p>
                     <p><label>Last Name:</label> &nbsp; <input type="text" name="last"></p>
                     <p><input type="submit" value="Sign Up" class="btn"/></p>
+                    <input type="hidden" name="action" value="register">
+                    <input type="hidden" name="next" value="' . $page . '">
+                    
                 </form>
             </div>
             ';
@@ -162,28 +206,18 @@
             $this->db =  $db;
         }
 
-        function handle_actions() {
-            return handle_auth_actions($this);
-        }
-        
-        
-//        function ($email, $password) {
-//            return is_valid_login($this->db, $email, $password);
-//        }
-        
+       
         function register() {
             return register_user($this->db);
         }
         
-        function show_valid ($email, $password) {
-            return show_valid ($this->db, $email, $password);
-        }
         
         function require_login() {
             if (! $this->logged_in()) {
                 header ('Location: login.php');
             }
         }
+        
         
         function validate ($email, $password) {
             return validate ($this->db, $email, $password);
@@ -193,7 +227,6 @@
 
 
     // Create a list object and connect to the database
-    require_once 'db.php';
     $auth = new Authenticate($db);
 
 ?>
