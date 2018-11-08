@@ -121,7 +121,7 @@
     function render_history($list) {
         $text = '<h3>Application History</h3><ul>';
         foreach ($list as $s) {
-            $text .= '<li>' . $s['id'] . ', ' . $s['date'] . ', ' . $s['text'] . '</li>';
+            $text .= '<li>' . $s['date'] . ' -- ' . $s['text'] . '</li>';
         }
         $text .= '</ul>';
         return $text;     
