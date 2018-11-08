@@ -13,18 +13,21 @@
     $content = render_button('Templates', '../../templates');
     $content .= render_button('Solutions', '..');
     $content .= render_button('Show Log', 'pagelog.php');
+    $content .= render_button('Login', 'index.php?action=login');
+    $content .= render_button('Sign Up', 'index.php?action=signup');
 
     // Try this login
 
-    $email = "me@here.com";
-    $password = 'Rock on dude!';
+    //    $email = "me@here.com";
+    //    $password = 'Rock on dude!';
+    //
+    //    // User Setup:
+    //    // require_once 'db.php';
+    //    // register_user($db, $email, $password, 'New', 'User');
+    //        
+    //    $content .= $auth->show_valid ($email, $password);
 
-    // User Setup:
-    // require_once 'db.php';
-    // register_user($db, $email, $password, 'New', 'User');
-        
-    $content .= $auth->show_valid ($email, $password);
-
+    $content .= $auth->handle_actions();
 
     // Create main part of page content
     $settings = array(
