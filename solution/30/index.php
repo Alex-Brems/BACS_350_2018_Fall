@@ -13,7 +13,7 @@
     $content = render_button('Templates', '../../templates');
     $content .= render_button('Solutions', '..');
     $content .= render_button('Show Log', 'pagelog.php');
-    
+
 
     $content .= '
     <h2>Public Page</h2>
@@ -32,6 +32,7 @@
         "page_title" => "User Authentication", 
         "logo"       => "Bear.png",
         "style"      => 'style.css',
+        'user'       => user_info(),
         "content"    => $content);
 
     echo render_page($settings);
