@@ -149,7 +149,6 @@
                     <p><input type="submit" value="Sign Up" class="btn"/></p>
                     <input type="hidden" name="action" value="register">
                     <input type="hidden" name="next" value="' . $page . '">
-                    
                 </form>
             </div>
             ';

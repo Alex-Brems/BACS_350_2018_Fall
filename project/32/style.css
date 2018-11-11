@@ -83,3 +83,7 @@ td {
     float: left;
     width: 40%;
 }
+
+.user {
+    float: right;
+}
