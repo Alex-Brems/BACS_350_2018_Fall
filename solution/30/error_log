@@ -1,0 +1,63 @@
+[08-Nov-2018 09:20:01 America/Denver] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/uncobacs/public_html/bacs_350/solution/30/auth.php:91) in /home3/uncobacs/public_html/bacs_350/solution/30/views.php on line 93
+[08-Nov-2018 09:20:01 America/Denver] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/uncobacs/public_html/bacs_350/solution/30/auth.php:91) in /home3/uncobacs/public_html/bacs_350/solution/30/views.php on line 94
+[08-Nov-2018 09:20:01 America/Denver] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/uncobacs/public_html/bacs_350/solution/30/auth.php:91) in /home3/uncobacs/public_html/bacs_350/solution/30/views.php on line 95
+[08-Nov-2018 09:35:39 America/Denver] PHP Fatal error:  Uncaught Error: Call to a member function log() on null in /home3/uncobacs/public_html/bacs_350/solution/30/index.php:34
+Stack trace:
+#0 /home3/uncobacs/public_html/bacs_350/solution/30/index.php(42): handle_actions()
+#1 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 34
+[08-Nov-2018 09:36:15 America/Denver] PHP Fatal error:  Uncaught Error: Call to a member function log() on null in /home3/uncobacs/public_html/bacs_350/solution/30/index.php:34
+Stack trace:
+#0 /home3/uncobacs/public_html/bacs_350/solution/30/index.php(42): handle_actions()
+#1 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 34
+[08-Nov-2018 09:37:31 America/Denver] PHP Fatal error:  Uncaught Error: Call to a member function log() on null in /home3/uncobacs/public_html/bacs_350/solution/30/index.php:34
+Stack trace:
+#0 /home3/uncobacs/public_html/bacs_350/solution/30/index.php(42): handle_actions()
+#1 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 34
+[08-Nov-2018 09:37:33 America/Denver] PHP Fatal error:  Uncaught Error: Call to a member function log() on null in /home3/uncobacs/public_html/bacs_350/solution/30/index.php:34
+Stack trace:
+#0 /home3/uncobacs/public_html/bacs_350/solution/30/index.php(42): handle_actions()
+#1 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 34
+[08-Nov-2018 10:24:30 America/Denver] PHP Fatal error:  Uncaught Error: Call to undefined method Authenticate::sign_up_form() in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php:18
+Stack trace:
+#0 /home3/uncobacs/public_html/bacs_350/solution/30/auth.php(166): handle_auth_actions(Object(Authenticate))
+#1 /home3/uncobacs/public_html/bacs_350/solution/30/index.php(30): Authenticate->handle_actions()
+#2 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php on line 18
+[08-Nov-2018 10:24:30 America/Denver] PHP Fatal error:  Uncaught Error: Call to undefined method Authenticate::sign_up_form() in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php:18
+Stack trace:
+#0 /home3/uncobacs/public_html/bacs_350/solution/30/auth.php(166): handle_auth_actions(Object(Authenticate))
+#1 /home3/uncobacs/public_html/bacs_350/solution/30/index.php(30): Authenticate->handle_actions()
+#2 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php on line 18
+[08-Nov-2018 10:47:27 America/Denver] PHP Warning:  Missing argument 1 for Authenticate::show_login(), called in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 33 and defined in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php on line 210
+[08-Nov-2018 10:47:27 America/Denver] PHP Warning:  Missing argument 2 for Authenticate::show_login(), called in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 33 and defined in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php on line 210
+[08-Nov-2018 10:47:27 America/Denver] PHP Fatal error:  Uncaught Error: Call to undefined function show_user_login() in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php:211
+Stack trace:
+#0 /home3/uncobacs/public_html/bacs_350/solution/30/index.php(33): Authenticate->show_login()
+#1 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php on line 211
+[08-Nov-2018 10:47:31 America/Denver] PHP Warning:  Missing argument 1 for Authenticate::show_login(), called in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 33 and defined in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php on line 210
+[08-Nov-2018 10:47:31 America/Denver] PHP Warning:  Missing argument 2 for Authenticate::show_login(), called in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 33 and defined in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php on line 210
+[08-Nov-2018 10:47:31 America/Denver] PHP Fatal error:  Uncaught Error: Call to undefined function show_user_login() in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php:211
+Stack trace:
+#0 /home3/uncobacs/public_html/bacs_350/solution/30/index.php(33): Authenticate->show_login()
+#1 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/auth.php on line 211
+[08-Nov-2018 10:52:33 America/Denver] PHP Fatal error:  Uncaught Error: Call to undefined method Authenticate::show_login() in /home3/uncobacs/public_html/bacs_350/solution/30/index.php:33
+Stack trace:
+#0 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 33
+[08-Nov-2018 18:39:30 UTC] PHP Parse error:  syntax error, unexpected '.=' (T_CONCAT_EQUAL) in /home3/uncobacs/public_html/bacs_350/solution/30/index.php on line 18
+[08-Nov-2018 18:41:39 UTC] PHP Parse error:  syntax error, unexpected '.=' (T_CONCAT_EQUAL) in /home3/uncobacs/public_html/bacs_350/solution/30/private.php on line 36
+[08-Nov-2018 12:11:01 America/Denver] PHP Fatal error:  Uncaught Error: Call to undefined method Authenticate::handle_actions() in /home3/uncobacs/public_html/bacs_350/solution/30/private.php:20
+Stack trace:
+#0 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/private.php on line 20
+[08-Nov-2018 12:11:46 America/Denver] PHP Fatal error:  Uncaught Error: Call to undefined method Authenticate::handle_actions() in /home3/uncobacs/public_html/bacs_350/solution/30/private.php:20
+Stack trace:
+#0 {main}
+  thrown in /home3/uncobacs/public_html/bacs_350/solution/30/private.php on line 20

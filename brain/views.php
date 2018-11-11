@@ -23,7 +23,7 @@
 
     // render_button -- Show a styled button
     function render_button($text, $url) {
-        return '<button class="btn">' . render_link($text, $url) . '</button>';
+        return "<button class=\"btn btn-primary btn-large m-20\" href=\"$url\">$text</button>";
     }
 
 

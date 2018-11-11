@@ -28,6 +28,10 @@
         </p>';
     }
     else {
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 5274bf45cfdddfb73ca8b71e48376b810d331e9a
         $content = $login;
     }
     

@@ -1,0 +1,2 @@
+[09-Nov-2018 07:25:27 UTC] PHP Warning:  require_once(db.php): failed to open stream: No such file or directory in /home3/uncobacs/public_html/bacs_350/solution/11/log.php on line 4
+[09-Nov-2018 07:25:27 UTC] PHP Fatal error:  require_once(): Failed opening required 'db.php' (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home3/uncobacs/public_html/bacs_350/solution/11/log.php on line 4

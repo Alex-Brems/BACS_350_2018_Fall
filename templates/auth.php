@@ -149,7 +149,10 @@
                     <p><input type="submit" value="Sign Up" class="btn"/></p>
                     <input type="hidden" name="action" value="register">
                     <input type="hidden" name="next" value="' . $page . '">
+<<<<<<< HEAD
                     
+=======
+>>>>>>> 5274bf45cfdddfb73ca8b71e48376b810d331e9a
                 </form>
             </div>
             ';

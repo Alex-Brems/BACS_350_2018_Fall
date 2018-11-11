@@ -58,6 +58,7 @@
         "Directory Listing" => "dirlist.php?path=../solution",
         "File Listing" => "filelist.php?path=../templates",
         "View Source" => "view_source.php?path=index.php",
+        'Markdown' => 'markdown.php',
     );
     $content .= render_links_card($title, $text, $links);
 
