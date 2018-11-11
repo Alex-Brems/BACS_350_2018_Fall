@@ -10,8 +10,6 @@
 
 
     // Display the page content
-    $content = render_button('Templates', '../../templates');
-    $content .= render_button('Solutions', '..');
     $content .= render_button('Show Log', 'pagelog.php');
 
 

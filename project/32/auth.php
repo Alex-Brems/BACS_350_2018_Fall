@@ -46,7 +46,7 @@
     function is_valid_login ($db, $email, $password) {
         
         global $log;
-        $query = 'SELECT password FROM administrators WHERE email=:email';
+        $query = 'SELECT password FROM admins WHERE email=:email';
         $statement = $db->prepare($query);
         $statement->bindValue(':email', $email);
         $statement->execute();
@@ -88,7 +88,7 @@
         $log->log("$email, $first, $last");
         $hash = password_hash($password, PASSWORD_DEFAULT);
         
-        $query = 'INSERT INTO administrators (email, password, firstName, lastName) 
+        $query = 'INSERT INTO admins (email, password, first, last) 
             VALUES (:email, :password, :first, :last);';
         
         $statement = $db->prepare($query);
@@ -114,7 +114,9 @@
             
                 <form action="' . $page . '" method="post">
                     <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
+                    <br>
                     <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
+                    <br>
                     <p><input type="submit" value="Login" class="btn"></p>
                     <input type="hidden" name="action" value="validate">
                     <input type="hidden" name="next" value="' . $page . '">
@@ -143,9 +145,13 @@
             
                 <form action="' . $page . '" method="post">
                     <p><label>Email:</label> &nbsp; <input type="text" name="email"></p>
+                    <br>
                     <p><label>Password:</label> &nbsp; <input type="password" name="password"></p>
+                    <br>
                     <p><label>First Name:</label> &nbsp; <input type="text" name="first"></p>
+                    <br>
                     <p><label>Last Name:</label> &nbsp; <input type="text" name="last"></p>
+                    <br>
                     <p><input type="submit" value="Sign Up" class="btn"/></p>
                     <input type="hidden" name="action" value="register">
                     <input type="hidden" name="next" value="' . $page . '">
