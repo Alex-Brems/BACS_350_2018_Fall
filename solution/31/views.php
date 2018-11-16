@@ -1,5 +1,4 @@
 <?php
-    require_once 'files.php';
 
     // article_settings -- Create the HTML page for one article.
     function article_settings($title, $body, $author) {
@@ -11,63 +10,18 @@
     }
     
 
-    // array_string -- Format an array as a string
-    function array_string($array) {
-        $s = 'array(';
-        foreach ($array as $key => $value) {
-            $s .= "\"$key\"  => \"$value\",\n    ";
-        }
-        $s .= ')';
-        return $s;
-    }
-
-    
-    // begin_page -- Create the HTML for the beginning of a page.  Add a page title and headline.
-    function begin_page($site_title, $page_title) {
-        header("Pragma: no-cache");
-        header("Expires: 0");
-        header("Cache-Control: no-store, no-cache, must-revalidate");
-        
-        echo '
-            <!DOCTYPE html>
-            <html lang="en">
-                <head>
-        
-                    <meta charset="UTF-8">
-                    <title>' . $page_title . '</title>
-
-                    <link rel="stylesheet" href="style.css">
-
-                </head>
-                <body>
-
-                    <header>
-                        <img src="Bear.png" alt="Bear Logo"/>
-                        <h1>' . $site_title . '</h1>
-                        <h2>' . $page_title . '</h2>
-                    </header>
-                    <main>
-        ';
-    }
-
-
-    // end_page -- Create the HTML for the end of a page.
-    function end_page() {
-        echo '
-                    </main>
-                </body>
-            </html>
-        ';
-        
-    }
-
-
     // render_article -- Create the HTML page for one article.
     function render_article($title, $paragraphs) {
         $body = implode('</p><p>', $paragraphs);
         $settings = array('title' => $title, 'body' => $body);
         $text = transform_text('<h3>{{ title }}</h3><p>{{ body }}</p>', $settings);
         return $text;
+    }
+
+
+    // render_button -- Show a styled button
+    function render_button($text, $url) {
+        return '<button class="btn">' . render_link($text, $url) . '</button>';
     }
 
 
@@ -102,11 +56,18 @@
     // render_links -- Create a bullet list of hyperlinks in HTML
     function render_links($list) {
         $s = '<ul>';
-        foreach($list as $i) {
-            $s .= "<li>" . render_link($i, $i) . "</li>";
+        foreach($list as $text => $url) {
+            $s .= "<li>" . render_link($text, $url) . "</li>";
         }
         $s .= '</ul>';
         return $s;
+    }
+
+    
+    // render_links_card -- Create a card with a collection of links
+    function render_links_card($title, $description, $links) {
+        $links = render_links($links);
+        return render_card($title,"<p>$description</p>$links");
     }
 
 
@@ -120,7 +81,7 @@
     function render_list($list) {
         $s = '<ul>';
         foreach($list as $i) {
-            $s .= render_template('list.html', array('item' => $i));
+            $s .= "<li>$i</li>";
         }
         $s .= '</ul>';
         return $s;
@@ -129,7 +90,16 @@
     
     // render_page -- Create one HTML page from a template.
     function render_page($settings) {
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        header("Cache-Control: no-store, no-cache, must-revalidate");
         return render_template("page.html", $settings);
+    }
+
+
+    // render_source_code -- Display the source code from a file
+    function render_source_code($path) {
+        return '<pre>' . htmlspecialchars(file_get_contents($path)) . '</pre>';
     }
 
     

@@ -22,6 +22,7 @@
         "site_title" => "BACS 350 Templates",
         "page_title" => "Display Pages loaded", 
         "style"      => 'style.css',
+        'user'       => '',
         "content"    => $content);
 
     echo render_page($settings);

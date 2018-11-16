@@ -114,7 +114,16 @@
                 <a href="30">30. User Authentication </a> - Login and user registration
             </li>
             <li>
-                <a href="31">31. Encapsulation </a> - Issue tracking system
+                <a href="31">31. Markdown Docs </a> - Display of formatted content
+            </li>
+             <li>
+                <a href="32">32. Notes App </a> - CRUD App to work with notes
+            </li>
+             <li>
+                <a href="33">33. Test App </a> -  App demos for testing
+            </li>
+            <li>
+                <a href="34">34. Slide Show </a> -  Show slides from Markdown
             </li>
         </ul>
     ';

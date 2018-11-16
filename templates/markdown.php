@@ -3,53 +3,13 @@
     require_once 'views.php';
     require_once 'db.php';    
     require_once 'log.php';
+    require_once 'files.php';
 
     require_once 'Parsedown.php';
     
 
     // Markdown Text
-    $markdown = '
-# Markdown Cheatsheet
-
-## Formatting Styles
-    
-Normal 
-
-*Italic*
-
-**Bold**
-
-***This***
-
-
-## Lists and Paragraphs
-
-### Bullet Lists
-
-* List item 1
-* List item 2
-
-### Numbered Lists
-
-1. Milk
-2. Cookies
-
-
-### Paragraphs
-
-Paragraph 1
-
-Paragraph 2
-
-
-## Preformatted
-
-```
-def function():
-    try_this()
-```
-
-    ';
+    $markdown = read_file('markdown.md');
 
 
     // Convert the Markdown into HTML
