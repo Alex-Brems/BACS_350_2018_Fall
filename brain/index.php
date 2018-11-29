@@ -18,7 +18,7 @@
 
     // Create main part of page content
     $settings = array(
-        "site_title" => "Exterior Brain",
+        "site_title" => "Exterior Brain Index",
         "page_title" => "A smarter tool", 
         "content"    => $content);
 

@@ -8,25 +8,30 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: silver;
+}
+
+a{
+
 }
 
 h1
 {
-    color: green;
+    color: yellow;
 }
 
 h2{
-    color: blue;
+    color: darkblue;
 }
 
 h3 {
-    color: green;
+    color: yellow;
 }
 
 header {
     border: 6px solid yellow;
-    background-color: blue;
-/*    border-radius: 20px;*/
+    background-color: darkblue;
+    border-radius: 20px;
     padding: 40px;
 }
 
@@ -41,6 +46,7 @@ header img {
     box-shadow: none;
     border-radius: 20px;
     float: right;
+    height: 130px;
 }
 
 li {
@@ -58,7 +64,8 @@ pre {
     margin: 10px;
     padding: 10px;
     border: 1px solid #dddddd;
-    border-left: 4px solid green;
+    border-left: 4px solid yellow;
+    background-color: white;
 }
 
 textarea {
@@ -78,18 +85,19 @@ td {
 */
 
 .card {
-    background-color: white;
+    background-color: silver;
     border: 1px solid black;
-    box-shadow: 2px 2px 5px gray;
+    box-shadow: 2px 2px 5px white;
+    border-radius: 20px;
     padding: 0px;
     margin: 2.5%;
     width: 45%;
 }
 
 .card-header {
-    background-color: #eeffee;
+    background-color: silver;
     border-bottom: 1px solid black;
-    color: green;
+    color: yellow;
     font-weight: 700;
     padding: 0px;
     margin: 0px;
@@ -97,7 +105,7 @@ td {
 }
 
 .page {
-    background-color: white;
+    background-color: silver;
     width: 100%;
 }
 

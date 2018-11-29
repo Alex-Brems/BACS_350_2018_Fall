@@ -5,7 +5,7 @@
 
 
     // Show buttons to go to other pages
-    $content = render_button('Brain', 'index.php');
+    $content = render_button('Brain', '/index.php');
 
     
     // Page Content
@@ -25,7 +25,7 @@
     $settings = array(
         "site_title" => "Brain",
         "page_title" => "Page Loading History", 
-        'logo'       => 'Bear.png',
+        'logo'       => 'wolf.jpg',
         "style"      => 'https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css',
         "content"    => $content);
 
