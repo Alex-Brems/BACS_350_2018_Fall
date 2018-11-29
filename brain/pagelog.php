@@ -5,7 +5,7 @@
 
 
     // Show buttons to go to other pages
-    $content = render_button('Brain', '/index.php');
+    $content = render_link('Brain', '/brain/index.php');
 
     
     // Page Content
