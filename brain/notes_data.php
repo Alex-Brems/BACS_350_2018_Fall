@@ -192,7 +192,7 @@
     function note_list_view ($table) {
         global $page;
         $s = '<table>';
-        $s .= '<tr><th>Title</th><th>Body</th><th>Date Created</th></tr>';
+        $s .= '<tr><th>Title</th><th>Body</th><th>Date Created</th><th>Edit Link</th><th>Delete Link</th></tr>';
         foreach($table as $row) {
             $title = $row[1];
             $body = $row[3];
