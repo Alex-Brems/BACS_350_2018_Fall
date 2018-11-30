@@ -20,7 +20,7 @@
         $scorecard  = filter_input(INPUT_POST, 'scorecard');
         $score      = filter_input(INPUT_POST, 'score');
         date_default_timezone_set("America/Denver");
-        $date       = date('Y-m-d g:i a');
+        $date       = date('Y-m-d g:i:s a');
         
         global $log;
         global $db;
@@ -106,7 +106,7 @@
         $scorecard  = filter_input(INPUT_POST, 'scorecard');
         $score      = filter_input(INPUT_POST, 'score');
         date_default_timezone_set("America/Denver");
-        $date       = date('Y-m-d g:i a');
+        $date       = date('Y-m-d g:i:s a');
         
         global $log;
         global $db;       
@@ -239,7 +239,7 @@
     function review_list_view ($table) {
         global $page;
         $s = '<table>';
-        $header = array('id', 'date', 'page', 'review', 'score', 'edit', 'delete');
+        $header = array('id', 'date', 'page/view review', 'reviewer', 'score', 'edit', 'delete');
         $s .= '<tr><th>' . implode('</th><th>', $header) . '</th></tr>';
         foreach($table as $row) {
             $id = $row['id'];
@@ -247,8 +247,8 @@
             $date = $row['date'];
             $reviewer = $row['reviewer'];
             $score = $row['score'];
-            $edit = render_link('edit', "$page?id=$row[id]&action=edit");
-            $delete = render_link("delete", "$page?id=$row[0]&action=delete");
+            $edit = render_link('Edit this Review', "$page?id=$row[id]&action=edit");
+            $delete = render_link("Delete this Review", "$page?id=$row[0]&action=delete");
             $row = array($id, $date, $url, $reviewer, $score, $edit,  $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
