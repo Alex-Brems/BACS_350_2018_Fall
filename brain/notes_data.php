@@ -194,7 +194,7 @@
         $s = '<table>';
         $s .= '<tr><th>Title</th><th>Body</th><th>Date Created</th></tr>';
         foreach($table as $row) {
-            $title = row[1];
+            $title = $row[1];
             $body = $row[3];
             $date = $row[2];
             $edit = render_link("Edit this Note", "$page?id=$row[0]&action=edit");
