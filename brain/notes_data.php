@@ -21,7 +21,7 @@
             date_default_timezone_set("America/Denver");
             $date  = date('Y-m-d g:i:s a');
             
-            $query = "INSERT INTO notes (title, date, body) VALUES (:title, :date, :body);";
+            $query = "INSERT INTO bearnotes (title, date, body) VALUES (:title, :date, :body);";
             
             $log->log("Add Record: $date, $title, $body");
             
@@ -50,7 +50,7 @@
         $action = filter_input(INPUT_GET, 'action');
         $id = filter_input(INPUT_GET, 'id');
         if ($action == 'delete' and !empty($id)) {
-            $query = "DELETE from notes WHERE id = :id";
+            $query = "DELETE from bearnotes WHERE id = :id";
             global $db;
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $id);
@@ -64,7 +64,7 @@
 
     // Lookup Record using ID
     function get_note($id) {
-        $query = "SELECT * FROM notes WHERE id = :id";
+        $query = "SELECT * FROM bearnotes WHERE id = :id";
         global $db;
         $statement = $db->prepare($query);
         $statement->bindValue(':id', $id);
@@ -77,7 +77,7 @@
 
     // Query for all notes
     function query_notes () {
-        $query = "SELECT * FROM notes";
+        $query = "SELECT * FROM bearnotes";
         global $db;
         $statement = $db->prepare($query);
         $statement->execute();
@@ -94,7 +94,7 @@
         $date  = date('Y-m-d g:i:s a');
         
         // Modify database row
-        $query = "UPDATE notes SET title=:title, body=:body, date=:date WHERE id = :id";
+        $query = "UPDATE bearnotes SET title=:title, body=:body, date=:date WHERE id = :id";
         global $db;       
         $statement = $db->prepare($query);
 
