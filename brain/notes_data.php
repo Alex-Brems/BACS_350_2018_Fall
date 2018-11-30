@@ -192,12 +192,14 @@
     function note_list_view ($table) {
         global $page;
         $s = '<table>';
-        $s .= '<tr><th>Title</th><th>Body</th></tr>';
+        $s .= '<tr><th>Title</th><th>Body</th><th>Date Created</th></tr>';
         foreach($table as $row) {
-            $edit = render_link($row[1], "$page?id=$row[0]&action=edit");
-            $title = $row[2];
-            $delete = render_link("delete", "$page?id=$row[0]&action=delete");
-            $row = array($edit, $title, $delete);
+            $title = row[1];
+            $body = $row[3];
+            $date = $row[2];
+            $edit = render_link("Edit this Note", "$page?id=$row[0]&action=edit");
+            $delete = render_link("Delete this Note", "$page?id=$row[0]&action=delete");
+            $row = array($title, $body, $date, $edit, $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
         $s .= '</table>';
