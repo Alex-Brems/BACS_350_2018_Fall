@@ -257,11 +257,11 @@
         $s .= '<tr><th>' . implode('</th><th>', $header) . '</th></tr>';
         foreach($table as $row) {
             $date = $row['date'];
-            $url = render_link($row['title'], "slides.php?id=' . $s['id'] . '&action=view");
+            $view = render_link($row['title'], "$page?id=$row[id]&action=view");
             $author = $row['author'];
             $edit = render_link('Edit this slideshow', "$page?id=$row[id]&action=edit");
             $delete = render_link("Delete this slideshow", "$page?id=$row[0]&action=delete");
-            $row = array($date, $url, $author, $edit, $delete);
+            $row = array($date, $view, $author, $edit, $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
         $s .= '</table>';
@@ -269,5 +269,5 @@
         return $s;
     }
 
-    //$page?id=$row[id]&action=view
+    
 ?>
