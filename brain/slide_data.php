@@ -262,7 +262,7 @@
             $author = $row['author'];
             $edit = render_link('Edit this slideshow', "$page?id=$row[id]&action=edit");
             $delete = render_link("Delete this slideshow", "$page?id=$row[0]&action=delete");
-            $row = array($id, $date, $url, $edit,  $delete);
+            $row = array($date, $url, $author, $edit, $delete);
             $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
         $s .= '</table>';
