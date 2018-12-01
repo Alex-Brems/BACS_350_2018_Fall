@@ -3,7 +3,6 @@
     require_once 'views.php';
     require_once 'db.php';
     require_once 'log.php';
-    //require_once 'auth.php';
 
     $page = 'slides.php';
 
@@ -14,31 +13,35 @@
 
     // Add a new record
     function add_slide() {
+        
+        $title       = filter_input(INPUT_POST, 'title');
+        $author   = filter_input(INPUT_POST, 'author');
+        $body   = filter_input(INPUT_POST, 'body');
+        date_default_timezone_set("America/Denver");
+        $date       = date('Y-m-d g:i:s a');
+        
         global $log;
+        global $db;
+        global $page;
         
         try {
-            $title  = filter_input(INPUT_POST, 'title');
-            $author  = filter_input(INPUT_POST, 'author');
-            $body = filter_input(INPUT_POST, 'body');
-            date_default_timezone_set("America/Denver");
-            $date  = date('Y-m-d g:i:s a');
+            $query = "INSERT INTO slides 
+                    (title, author, body, date) 
+                VALUES 
+                    (:title, :author, :body, :date);";
             
-            $query = "INSERT INTO slides (date, title, author, body) VALUES (:date, :title, :author, :body);";
+            $log->log("Add Slideshow: $title, $author, $body, $date");
             
-            $log->log("Add Record: $date, $title, $author, $body");
-            
-            global $db;
             $statement = $db->prepare($query);
-        
-            $statement->bindValue(':date', $date);
+            
             $statement->bindValue(':title', $title);
             $statement->bindValue(':author', $author);
             $statement->bindValue(':body', $body);
+            $statement->bindValue(':date', $date);
             
             $statement->execute();
             $statement->closeCursor();
             
-            global $page;
             header("Location: $page");
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
@@ -50,17 +53,19 @@
 
     // Delete Database Record
     function delete_slide($id) {
+        global $db;
+        global $page;
+        
         $action = filter_input(INPUT_GET, 'action');
         $id = filter_input(INPUT_GET, 'id');
+        
         if ($action == 'delete' and !empty($id)) {
             $query = "DELETE from slides WHERE id = :id";
-            global $db;
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $id);
             $statement->execute();
             $statement->closeCursor();
         }
-        global $page;
         header("Location: $page");
     }
     
@@ -78,8 +83,8 @@
     }
 
 
-    // Query for all slide
-    function query_slide () {
+    // Query for all slides
+    function query_slides () {
         $query = "SELECT * FROM slides";
         global $db;
         $statement = $db->prepare($query);
@@ -90,29 +95,40 @@
 
     // Update the database
     function update_slide () {
-        $id    = filter_input(INPUT_POST, 'id');
+        $id = filter_input(INPUT_POST, 'id');
         $title = filter_input(INPUT_POST, 'title');
         $author = filter_input(INPUT_POST, 'author');
-        $body  = filter_input(INPUT_POST, 'body');
+        $body = filter_input(INPUT_POST, 'body');
         date_default_timezone_set("America/Denver");
-        $date  = date('Y-m-d g:i:s a');
+        $date = date('Y-m-d g:i:s a');
         
-        // Modify database row
-        $query = "UPDATE slides SET title=:title, body=:body, author=:author, date=:date WHERE id = :id";
+        global $log;
         global $db;       
-        $statement = $db->prepare($query);
-
-        $statement->bindValue(':id', $id);
-        $statement->bindValue(':title', $title);
-        $statement->bindValue(':author', $author);
-        $statement->bindValue(':body', $body);
-        $statement->bindValue(':date', $date);
-
-        $statement->execute();
-        $statement->closeCursor();
-        
         global $page;
-        header("Location: $page");
+        
+        try {
+            // Modify database row
+            $query = "UPDATE slides SET 
+                title=:title, author=:author, body=:body, date=:date
+                WHERE id = :id";
+            
+            $statement = $db->prepare($query);
+
+            $statement->bindValue(':id', $id);
+            $statement->bindValue(':title', $title);
+            $statement->bindValue(':author', $author);
+            $statement->bindValue(':body', $body);
+            $statement->bindValue(':date', $date);
+
+            $statement->execute();
+            $statement->closeCursor();
+
+            header("Location: $page");
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            $log->log("**Error**: $error_message **");
+            die();
+        }
     }
 
 
@@ -124,60 +140,46 @@
     function add_slide_view() {
         global $page;
         return '
-        <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="post-pslide">
-            <h3>Add slide</h3>
+            <h3>Add a slideshow</h3>
             <form action="' . $page . '" method="post">
-                <p><label>Slideshow Title:</label> &nbsp; <input type="text" name="title"></p>
-                <p><label>Slideshow Author:</label> &nbsp; <input type="text" name="author"></p>
-                <p><label>Slideshow Body: (Remember to make sure this is in Markdown!)</label> &nbsp; <textarea name="body" rows = "10" cols = "40"></textarea></p>
-                <p><input type="submit" value="Add slide"/></p>
+                <p><label>Slide Title:</label> &nbsp; <input type="text" name="title"></p>
+                <p><label>Slide Author:</label> &nbsp; <input type="text" name="author"></p>
+                <p><label>Slide Body: (In markdown, please!)</label><br> &nbsp; <textarea name="body" rows = "16" cols = "48"></textarea></p>
+                <p><input type="submit" value="Add slideshow"/></p>
                 <input type="hidden" name="action" value="create">
             </form>
-            </div>
-    </div>
-    </div>
-</div>
         ';
     }
 
 
     // Show form for adding a record
     function edit_slide_view($record) {
-        $id    = $record['id'];
-        $title  = $record['title'];
+        
+        $id = $record['id'];
+        $title = $record['title'];
         $author = $record['author'];
         $body = $record['body'];
         global $page;
         return '
-        <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="post-pslide">
-            <h3>Add Presentation</h3>
+            <h3>Edit Slideshow</h3>
             <form action="' . $page . '" method="post">
-                <p><label>Title:</label> &nbsp; <input type="text" name="slide_email" value="' . $title . '"></p>
-                <p><label>Author:</label> &nbsp; <input type="text" name="author" value="' . $author . '"></p>
-                <p><label>Body: (Remember to make sure this is in Markdown!)</label> &nbsp; <br> <textarea name="scorecard" rows = "10" cols = "40">' . $body . '</textarea></p>
-                <p><input type="submit" value="Edit slide"/></p>
+            
+                <p><label>Slide Title:</label> &nbsp; <input type="text" name="title" value="' . $title . '"></p>
+                <p><label>Slide Author:</label> &nbsp; <input type="text" name="author" value="' . $author . '"></p>
+                <p><label>Slide Body: (In markdown, please!)</label><br> &nbsp; <textarea name="body" rows = "16" cols = "48">' . $body . '</textarea></p>
+                
+                <p><input type="submit" value="Save Slideshow"/></p>
                 <input type="hidden" name="action" value="update">
+                <input type="hidden" name="id" value="' . $id . '">
             </form>
-            </div>
-    </div>
-    </div>
-</div>
         ';
     }
 
 
-
-
     // Handle all action verbs
-    function render_slide_view() {
+    function render_slides_view() {
         $id = filter_input(INPUT_GET, 'id');
-        global $slide;
+        global $slides;
         global $log;
         global $db;
         
@@ -196,7 +198,8 @@
         $action = filter_input(INPUT_GET, 'action');
         if (empty($action)) {                                  
             $log->log('slide READ');                      // READ
-            return slide_list_view(query_slide());
+            $intro =  render_markdown_file('slides.md');
+            return $intro . slide_list_view(query_slides());
         }
         if ($action == 'add') {
             $log->log('slide Add View');
@@ -206,18 +209,19 @@
             $log->log('slide DELETE');                    // DELETE
             return delete_slide($id);
         }
-        if ($action == 'view') {
-            $log->log('slide VIEW');                    // DELETE
-            return render_slides(get_slide($id));
+        if ($action == 'view')
+        {
+            $log->log('slide VIEW');
+            return render_slides(get_slide($id));               // VIEW
         }
         if ($action == 'edit' and ! empty($id)) {
             $log->log('slide Edit View');
-            return edit_slide_view(get_slide($id));
+            return edit_slide_view(get_slide($id));           // EDIT
         }
     }
 
     function render_slides($record){
-        $body = $recod['body'];
+        $body = $record['body'];
         $string = '';
         $string .= '<html>
         <head>
@@ -246,65 +250,24 @@
     return $string;
     }
 
-
     // render_table -- Create a bullet list in HTML
-    function slide_list_view ($list) {
+    function slide_list_view ($table) {
         global $page;
-        $string = '';
-        $string.= '<div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-pslide">
-              <h1 class="post-title">
-              Slides
-              </h1>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr>
-            ';
-        foreach ($list as $s) {
-            $string .= '<div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="post-pslide">
-                    <h2 class="post-title">
-                    Title: 
-                    </h2>
-                    <p>
-                    ' . $s['title'] . '
-                    </p>
-                    <h3 class="post-subtitle">
-                      Author: 
-                    </h3>
-                    <p>
-                    ' . $s['author'] . '
-                    </p>
-                    <h3 class="post-subtitle">
-                      Date: 
-                    </h3>
-                    <p>
-                    ' . $s['date'] . '
-                    </p>
-                    <h3 class="post-subtitle">
-                      Body: 
-                    </h3>
-                    <pre>
-                    ' . $s['body'] . '
-                    </pre>
-                </div>
-                <div class="clearfix">
-            <a class="btn btn-secondary" href="slides.php?id=' . $s['id'] . '&action=edit">Edit</a>
-            <a class="btn btn-secondary" href="slides.php?id=' . $s['id'] . '&action=delete">Delete</a>
-            <a class="btn btn-secondary" href="slides.php?id=' . $s['id'] . '&action=view">View Slideshow</a>
-          </div>
-              </div>
-            </div>
-          </div>';
+        $s = '<table>';
+        $header = array('date', 'view/title', 'author', 'edit', 'delete');
+        $s .= '<tr><th>' . implode('</th><th>', $header) . '</th></tr>';
+        foreach($table as $row) {
+            $url = render_link($row['title'], "$page?id=$row[id]&action=view");
+            $date = $row['date'];
+            $author = $row['author'];
+            $edit = render_link('Edit this slideshow', "$page?id=$row[id]&action=edit");
+            $delete = render_link("Delete this slideshow", "$page?id=$row[0]&action=delete");
+            $row = array($id, $date, $url, $edit,  $delete);
+            $s .= '<tr><td>' . implode('</td><td>', $row) . '</td></tr>';
         }
-
-        return $string;
+        $s .= '</table>';
+        
+        return $s;
     }
 
 
