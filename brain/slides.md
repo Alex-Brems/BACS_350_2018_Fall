@@ -7,4 +7,4 @@ Sample Slideshow text
     * Test 2
 
 * [Brain](index.php)
-* [Add Review](review.php?action=add)
+* [Add Slides](slides.php?action=add)
