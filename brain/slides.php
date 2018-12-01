@@ -1,25 +1,58 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
-        <link rel="stylesheet" href="https://revealjs.com/css/theme/white.css">
-        <link rel="stylesheet" href="https://revealjs.com/lib/css/zenburn.css"/>
-        <link rel="stylesheet" href="slides.css">
-    </head>
-    <body>
+<?php
 
-        <div class="reveal">
-            <div class="slides">
-                <section data-markdown
-                         data-separator="\n---\n" data-separator-vertical="\n--\n">
-                    <textarea data-template><?php include 'slides.md'; ?></textarea>
-                </section>
-            </div>
+    require_once 'views.php'; 
+    require_once 'log.php';
+    require_once 'files.php';
+    require_once 'slide_data.php';
+    
+    
+    // Page content
+
+    $content = render_slide_view();
+    $content .=  '<hr> <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-preview">
+          <a href="index.php">
+            <h2 class="post-title">
+              Home
+            </h2>
+            <h3 class="post-subtitle">
+              Link to Brain Home
+            </h3>
+          </a>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <script src="https://revealjs.com/lib/js/head.min.js"></script>
-        <script src="https://revealjs.com/js/reveal.js"></script>
-        <script src="slides.js"></script>
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-preview">
+            <a href="slides.php?action=add">
+              <h2 class="post-title">
+                Add Presentation
+              </h2>
+              <h3 class="post-subtitle">
+                Link to add a presentation
+              </h3>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+ ';
 
-    </body>
-</html>
+    
+    // Create main part of page content
+    $settings = array(
+        "site_title" => "Exterior Brain",
+        "page_title" => "Design slides App", 
+        "content"    => $content);
+
+    echo render_page($settings);
+
+    
+
+?>
