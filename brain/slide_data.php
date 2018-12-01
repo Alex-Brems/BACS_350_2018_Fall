@@ -53,9 +53,6 @@
 
     // Delete Database Record
     function delete_slide($id) {
-        global $db;
-        global $page;
-        
         $action = filter_input(INPUT_GET, 'action');
         $id = filter_input(INPUT_GET, 'id');
         
@@ -66,6 +63,7 @@
             $statement->execute();
             $statement->closeCursor();
         }
+        global $page;
         header("Location: $page");
     }
     

@@ -1,10 +1,16 @@
 # Slideshows
 
-Sample Slideshow text
+Here is an example of what kind of info you should put into the body of yoru slideshow:
 
-    Sample Preformatted Text
-    #### Test 1
-    * Test 2
+    Slideshow Title
+    #### Slide Title
+    * Slide Bullet Point
+
+
+    --
+
+    #### The gap above shows two different slides
+    * And these two lines display as text on a new slide
 
 * [Brain](index.php)
 * [Add Slides](slides.php?action=add)
