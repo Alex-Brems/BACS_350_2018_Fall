@@ -58,6 +58,7 @@
         
         if ($action == 'delete' and !empty($id)) {
             $query = "DELETE from slides WHERE id = :id";
+            global $db;
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $id);
             $statement->execute();
