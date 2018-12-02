@@ -3,7 +3,7 @@
 ------------------------------*/
 
 p {
-    color: #F6B018;
+    color: yellow;
 }
 
 /* ------------------------------
@@ -15,12 +15,12 @@ p {
 }
 
 .reveal li {
-    color: #0E3D65;
+    color: darkblue;
     font-size: 90%;
 }
 
 .reveal li li {
-    color: #F6B018;
+    color: yellow;
 }
 
 .right {
@@ -37,19 +37,19 @@ p {
 .reveal h1 {
     text-transform: none;
     font-size: 300%;
-    color: #0E3D65;
+    color: darkblue;
 }
 
 .reveal h2 {
     text-transform: none;
     font-size: 150%;
-    color: #F6B018;;
+    color: yellow;
 }
 
 .reveal h3, .reveal h4 {
     text-transform: none;
     font-size: 120%;
-    color: #0E3D65;
+    color: darkblue;
 }
 
 .divider {
