@@ -221,8 +221,7 @@
 
     function render_slides($record){
         $body = $record['body'];
-        $string = '';
-        $string .= '
+        $string = '
         <html>
         <head>
             <link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
@@ -247,7 +246,9 @@
     
         </body>
     </html>';
-    return $string;
+    file_put_contents("heck.php", $string);
+    header('Location: heck.php');
+    //return $string;
     }
 
     // render_table -- Create a bullet list in HTML

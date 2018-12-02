@@ -10,6 +10,10 @@ p {
     Class
 ------------------------------*/
 
+.slide-background:first-child {
+    background-color: silver;
+}
+
 .reveal li {
     color: #0E3D65;
     font-size: 90%;
