@@ -222,7 +222,8 @@
     function render_slides($record){
         $body = $record['body'];
         $string = '';
-        $string .= '<html>
+        $string .= '
+        <html>
         <head>
             <link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
             <link rel="stylesheet" href="https://revealjs.com/css/theme/black.css">
@@ -257,7 +258,10 @@
         $s .= '<tr><th>' . implode('</th><th>', $header) . '</th></tr>';
         foreach($table as $row) {
             $date = $row['date'];
-            $view = render_link($row['title'], "$page?id=$row[id]&action=view");
+            //$view = render_link($row['title'], "renderslide.php");
+            $title = $row['title'];
+            $body = $row['body'];
+            $view = '<a href="slides.php?id=' . $row['id'] . '&action=view">' . $row['title'] . '</a>';
             $author = $row['author'];
             $edit = render_link('Edit this slideshow', "$page?id=$row[id]&action=edit");
             $delete = render_link("Delete this slideshow", "$page?id=$row[0]&action=delete");
