@@ -6,6 +6,10 @@ p {
     color: yellow;
 }
 
+body {
+    background-color: silver;
+}
+
 /* ------------------------------
     Class
 ------------------------------*/
